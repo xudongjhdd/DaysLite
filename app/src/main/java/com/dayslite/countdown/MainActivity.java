@@ -101,9 +101,6 @@ public class MainActivity extends Activity {
         box.setPadding(ui.dp(20), ui.dp(34), ui.dp(20), ui.dp(34));
         box.setBackground(ui.round("#FFFFFF", 18, "#E2E8F0"));
 
-        TextView mark = ui.text("7", 44, "#2563EB", Typeface.BOLD);
-        mark.setGravity(Gravity.CENTER);
-        box.addView(mark);
         box.addView(ui.text(text.noCountdownsYet(), 22, "#0F172A", Typeface.BOLD));
         TextView helper = ui.text(text.emptyHelper(), 15, "#64748B", Typeface.NORMAL);
         helper.setGravity(Gravity.CENTER);

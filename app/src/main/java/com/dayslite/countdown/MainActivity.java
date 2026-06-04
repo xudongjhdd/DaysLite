@@ -30,13 +30,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class MainActivity extends Activity {
     private static final String PREFS = "dayslite";
     private static final String KEY_EVENTS = "events";
     private static final DateTimeFormatter STORE_DATE = DateTimeFormatter.ISO_LOCAL_DATE;
-    private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("MMM d, yyyy");
+    private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.US);
 
     private final List<CountdownEvent> events = new ArrayList<>();
     private Screen currentScreen = Screen.HOME;
@@ -91,12 +92,12 @@ public class MainActivity extends Activity {
                 root.addView(card(event), matchWrap());
                 addSpace(root, 12);
             }
-        }
 
-        addSpace(root, 10);
-        Button add = primaryButton("+ Add countdown");
-        add.setOnClickListener(v -> showEditor(null));
-        root.addView(add, matchWrap());
+            addSpace(root, 10);
+            Button add = primaryButton("+ Add countdown");
+            add.setOnClickListener(v -> showEditor(null));
+            root.addView(add, matchWrap());
+        }
     }
 
     private View emptyState() {

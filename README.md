@@ -35,7 +35,12 @@ app/build/outputs/apk/debug/app-debug.apk
 app/
   src/main/
     AndroidManifest.xml
-    java/com/dayslite/countdown/MainActivity.java
+    java/com/dayslite/countdown/
+      MainActivity.java
+      CountdownEvent.java
+      CountdownStore.java
+      CountdownCalculator.java
+      UiKit.java
     res/
       drawable/
       mipmap-anydpi-v26/

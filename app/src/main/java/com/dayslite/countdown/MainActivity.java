@@ -3,7 +3,6 @@ package com.dayslite.countdown;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -41,6 +39,7 @@ public class MainActivity extends Activity {
     private static final DateTimeFormatter DISPLAY_DATE = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     private final List<CountdownEvent> events = new ArrayList<>();
+    private Screen currentScreen = Screen.HOME;
     private LinearLayout root;
     private CountdownEvent editingEvent;
     private LocalDate selectedDate;
@@ -58,6 +57,7 @@ public class MainActivity extends Activity {
     }
 
     private void showHome() {
+        currentScreen = Screen.HOME;
         editingEvent = null;
         root = vertical();
         root.setBackgroundColor(Color.parseColor("#F8FAFC"));
@@ -153,6 +153,7 @@ public class MainActivity extends Activity {
     }
 
     private void showEditor(CountdownEvent event) {
+        currentScreen = Screen.EDITOR;
         editingEvent = event;
         selectedDate = event == null ? LocalDate.now() : event.targetDate;
         selectedColor = event == null ? "#2563EB" : event.color;
@@ -164,7 +165,7 @@ public class MainActivity extends Activity {
         scrollView.addView(root);
         setContentView(scrollView);
 
-        addTopBar(event == null ? "Add countdown" : "Edit countdown");
+        addTopBar(event == null ? "Add countdown" : "Edit countdown", v -> showHome());
 
         addLabel("Event name");
         titleInput = input("Trip, birthday, exam...");
@@ -209,12 +210,13 @@ public class MainActivity extends Activity {
     }
 
     private void showSettings() {
+        currentScreen = Screen.SETTINGS;
         root = vertical();
         root.setBackgroundColor(Color.parseColor("#F8FAFC"));
         root.setPadding(dp(20), dp(20), dp(20), dp(20));
         setContentView(root);
 
-        addTopBar("Settings");
+        addTopBar("Settings", v -> showHome());
         root.addView(settingsItem("Privacy Policy", "How DaysLite handles data", v -> showPrivacyPolicy()), matchWrap());
         addSpace(root, 12);
         root.addView(settingsItem("Local storage", "Countdowns are saved on this device only", null), matchWrap());
@@ -223,6 +225,7 @@ public class MainActivity extends Activity {
     }
 
     private void showPrivacyPolicy() {
+        currentScreen = Screen.PRIVACY;
         root = vertical();
         root.setBackgroundColor(Color.parseColor("#F8FAFC"));
         root.setPadding(dp(20), dp(20), dp(20), dp(20));
@@ -230,7 +233,7 @@ public class MainActivity extends Activity {
         scrollView.addView(root);
         setContentView(scrollView);
 
-        addTopBar("Privacy Policy");
+        addTopBar("Privacy Policy", v -> showSettings());
         root.addView(text("DaysLite does not collect, transmit, sell, or share personal data.", 18, "#0F172A", Typeface.BOLD));
         addSpace(root, 12);
         root.addView(text("Countdown events, dates, colors, and notes are stored locally on your device. They are not sent to DaysLite servers or shared with third parties.", 15, "#334155", Typeface.NORMAL));
@@ -239,7 +242,7 @@ public class MainActivity extends Activity {
         addSpace(root, 12);
         root.addView(text("You can delete individual countdowns inside the app. You can also delete all app data by uninstalling DaysLite or clearing app storage from Android system settings.", 15, "#334155", Typeface.NORMAL));
         addSpace(root, 12);
-        root.addView(text("Contact: replace-this-email@example.com", 15, "#64748B", Typeface.NORMAL));
+        root.addView(text("For support, use the GitHub repository contact path provided by the developer.", 15, "#64748B", Typeface.NORMAL));
     }
 
     private View settingsItem(String title, String detail, View.OnClickListener listener) {
@@ -254,13 +257,13 @@ public class MainActivity extends Activity {
         return item;
     }
 
-    private void addTopBar(String title) {
+    private void addTopBar(String title, View.OnClickListener backAction) {
         LinearLayout bar = horizontal();
         bar.setGravity(Gravity.CENTER_VERTICAL);
         root.addView(bar, matchWrap());
 
         TextView back = pill("Back", "#E2E8F0", "#0F172A");
-        back.setOnClickListener(v -> showHome());
+        back.setOnClickListener(backAction);
         bar.addView(back);
 
         TextView heading = text(title, 24, "#0F172A", Typeface.BOLD);
@@ -492,7 +495,22 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        if (currentScreen == Screen.HOME) {
+            finish();
+            return;
+        }
+        if (currentScreen == Screen.PRIVACY) {
+            showSettings();
+            return;
+        }
         showHome();
+    }
+
+    private enum Screen {
+        HOME,
+        EDITOR,
+        SETTINGS,
+        PRIVACY
     }
 
     private static class CountdownEvent {

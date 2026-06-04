@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 
     private CountdownStore store;
     private UiKit ui;
+    private AppLanguage language = AppLanguage.ENGLISH;
+    private AppText text = new AppText(language);
     private Screen currentScreen = Screen.HOME;
     private LinearLayout root;
     private CountdownEvent editingEvent;
@@ -44,6 +46,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         store = new CountdownStore(this);
         ui = new UiKit(this);
+        language = store.loadLanguage();
+        text = new AppText(language);
         events.addAll(store.loadEvents());
         showHome();
     }
@@ -66,9 +70,9 @@ public class MainActivity extends Activity {
         LinearLayout titles = ui.vertical();
         header.addView(titles, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         titles.addView(ui.text("DaysLite", 30, "#0F172A", Typeface.BOLD));
-        titles.addView(ui.text(calculator.summaryText(events), 15, "#64748B", Typeface.NORMAL));
+        titles.addView(ui.text(calculator.summaryText(events, language), 15, "#64748B", Typeface.NORMAL));
 
-        TextView settings = ui.pill("Settings", "#E2E8F0", "#0F172A");
+        TextView settings = ui.pill(text.settings(), "#E2E8F0", "#0F172A");
         settings.setOnClickListener(v -> showSettings());
         header.addView(settings);
 
@@ -85,7 +89,7 @@ public class MainActivity extends Activity {
             }
 
             ui.addSpace(root, 10);
-            Button add = ui.primaryButton("+ Add countdown");
+            Button add = ui.primaryButton(text.addCountdownAction());
             add.setOnClickListener(v -> showEditor(null));
             root.addView(add, ui.matchWrap());
         }
@@ -100,13 +104,13 @@ public class MainActivity extends Activity {
         TextView mark = ui.text("7", 44, "#2563EB", Typeface.BOLD);
         mark.setGravity(Gravity.CENTER);
         box.addView(mark);
-        box.addView(ui.text("No countdowns yet", 22, "#0F172A", Typeface.BOLD));
-        TextView helper = ui.text("Add a date worth looking forward to.", 15, "#64748B", Typeface.NORMAL);
+        box.addView(ui.text(text.noCountdownsYet(), 22, "#0F172A", Typeface.BOLD));
+        TextView helper = ui.text(text.emptyHelper(), 15, "#64748B", Typeface.NORMAL);
         helper.setGravity(Gravity.CENTER);
         box.addView(helper);
         ui.addSpace(box, 18);
 
-        Button add = ui.primaryButton("Add countdown");
+        Button add = ui.primaryButton(text.addCountdown());
         add.setOnClickListener(v -> showEditor(null));
         box.addView(add, ui.matchWrap());
         return box;
@@ -133,9 +137,9 @@ public class MainActivity extends Activity {
 
         ui.addSpace(card, 10);
 
-        TextView days = ui.text(calculator.daysLabel(event.targetDate), 34, event.color, Typeface.BOLD);
+        TextView days = ui.text(calculator.daysLabel(event.targetDate, language), 34, event.color, Typeface.BOLD);
         card.addView(days);
-        card.addView(ui.text(event.targetDate.format(CountdownCalculator.DISPLAY_DATE), 15, "#64748B", Typeface.NORMAL));
+        card.addView(ui.text(calculator.formatDate(event.targetDate, language), 15, "#64748B", Typeface.NORMAL));
 
         if (!event.note.trim().isEmpty()) {
             ui.addSpace(card, 8);
@@ -157,44 +161,44 @@ public class MainActivity extends Activity {
         scrollView.addView(root);
         setContentView(scrollView);
 
-        addTopBar(event == null ? "Add countdown" : "Edit countdown", v -> showHome());
+        addTopBar(event == null ? text.addCountdownTitle() : text.editCountdownTitle(), v -> showHome());
 
-        addLabel("Event name");
-        titleInput = ui.input("Trip, birthday, exam...");
+        addLabel(text.eventName());
+        titleInput = ui.input(text.eventNameHint());
         titleInput.setText(event == null ? "" : event.title);
         root.addView(titleInput, ui.matchWrap());
 
         ui.addSpace(root, 16);
-        addLabel("Target date");
-        dateValue = ui.pill(selectedDate.format(CountdownCalculator.DISPLAY_DATE), "#FFFFFF", "#0F172A");
+        addLabel(text.targetDate());
+        dateValue = ui.pill(calculator.formatDate(selectedDate, language), "#FFFFFF", "#0F172A");
         dateValue.setGravity(Gravity.CENTER_VERTICAL);
         dateValue.setPadding(ui.dp(16), ui.dp(14), ui.dp(16), ui.dp(14));
         dateValue.setOnClickListener(v -> pickDate());
         root.addView(dateValue, ui.matchWrap());
 
         ui.addSpace(root, 16);
-        addLabel("Color");
+        addLabel(text.color());
         colorRow = ui.horizontal();
         colorRow.setGravity(Gravity.CENTER_VERTICAL);
         root.addView(colorRow, ui.matchWrap());
         renderColors();
 
         ui.addSpace(root, 16);
-        addLabel("Note");
-        noteInput = ui.input("Optional");
+        addLabel(text.note());
+        noteInput = ui.input(text.optional());
         noteInput.setText(event == null ? "" : event.note);
         noteInput.setMinLines(3);
         noteInput.setGravity(Gravity.TOP);
         root.addView(noteInput, ui.matchWrap());
 
         ui.addSpace(root, 24);
-        Button save = ui.primaryButton("Save");
+        Button save = ui.primaryButton(text.save());
         save.setOnClickListener(v -> saveEditor());
         root.addView(save, ui.matchWrap());
 
         if (event != null) {
             ui.addSpace(root, 12);
-            Button delete = ui.secondaryButton("Delete");
+            Button delete = ui.secondaryButton(text.delete());
             delete.setTextColor(Color.parseColor("#DC2626"));
             delete.setOnClickListener(v -> confirmDelete(event));
             root.addView(delete, ui.matchWrap());
@@ -208,12 +212,14 @@ public class MainActivity extends Activity {
         root.setPadding(ui.dp(20), ui.dp(20), ui.dp(20), ui.dp(20));
         setContentView(root);
 
-        addTopBar("Settings", v -> showHome());
-        root.addView(settingsItem("Privacy Policy", "How DaysLite handles data", v -> showPrivacyPolicy()), ui.matchWrap());
+        addTopBar(text.settingsTitle(), v -> showHome());
+        root.addView(settingsItem(text.privacyPolicy(), text.privacyDetail(), v -> showPrivacyPolicy()), ui.matchWrap());
         ui.addSpace(root, 12);
-        root.addView(settingsItem("Local storage", "Countdowns are saved on this device only", null), ui.matchWrap());
+        root.addView(settingsItem(text.localStorage(), text.localStorageDetail(), null), ui.matchWrap());
         ui.addSpace(root, 12);
-        root.addView(settingsItem("Version", "1.0.0", null), ui.matchWrap());
+        root.addView(settingsItem(text.language(), text.languageDetail(), v -> toggleLanguage()), ui.matchWrap());
+        ui.addSpace(root, 12);
+        root.addView(settingsItem(text.version(), "1.0.0", null), ui.matchWrap());
     }
 
     private void showPrivacyPolicy() {
@@ -225,16 +231,16 @@ public class MainActivity extends Activity {
         scrollView.addView(root);
         setContentView(scrollView);
 
-        addTopBar("Privacy Policy", v -> showSettings());
-        root.addView(ui.text("DaysLite does not collect, transmit, sell, or share personal data.", 18, "#0F172A", Typeface.BOLD));
+        addTopBar(text.privacyPolicy(), v -> showSettings());
+        root.addView(ui.text(text.privacyIntro(), 18, "#0F172A", Typeface.BOLD));
         ui.addSpace(root, 12);
-        root.addView(ui.text("Countdown events, dates, colors, and notes are stored locally on your device. They are not sent to DaysLite servers or shared with third parties.", 15, "#334155", Typeface.NORMAL));
+        root.addView(ui.text(text.privacyLocalData(), 15, "#334155", Typeface.NORMAL));
         ui.addSpace(root, 12);
-        root.addView(ui.text("DaysLite does not require account login, location access, contacts, photos, microphone, camera, or other sensitive permissions.", 15, "#334155", Typeface.NORMAL));
+        root.addView(ui.text(text.privacyPermissions(), 15, "#334155", Typeface.NORMAL));
         ui.addSpace(root, 12);
-        root.addView(ui.text("You can delete individual countdowns inside the app. You can also delete all app data by uninstalling DaysLite or clearing app storage from Android system settings.", 15, "#334155", Typeface.NORMAL));
+        root.addView(ui.text(text.privacyDeletion(), 15, "#334155", Typeface.NORMAL));
         ui.addSpace(root, 12);
-        root.addView(ui.text("For support, use the GitHub repository contact path provided by the developer.", 15, "#64748B", Typeface.NORMAL));
+        root.addView(ui.text(text.privacySupport(), 15, "#64748B", Typeface.NORMAL));
     }
 
     private View settingsItem(String title, String detail, View.OnClickListener listener) {
@@ -254,7 +260,7 @@ public class MainActivity extends Activity {
         bar.setGravity(Gravity.CENTER_VERTICAL);
         root.addView(bar, ui.matchWrap());
 
-        TextView back = ui.pill("Back", "#E2E8F0", "#0F172A");
+        TextView back = ui.pill(text.back(), "#E2E8F0", "#0F172A");
         back.setOnClickListener(backAction);
         bar.addView(back);
 
@@ -269,7 +275,7 @@ public class MainActivity extends Activity {
                 this,
                 (view, year, month, dayOfMonth) -> {
                     selectedDate = LocalDate.of(year, month + 1, dayOfMonth);
-                    dateValue.setText(selectedDate.format(CountdownCalculator.DISPLAY_DATE));
+                    dateValue.setText(calculator.formatDate(selectedDate, language));
                 },
                 selectedDate.getYear(),
                 selectedDate.getMonthValue() - 1,
@@ -299,7 +305,7 @@ public class MainActivity extends Activity {
         String title = titleInput.getText().toString().trim();
         String note = noteInput.getText().toString().trim();
         if (title.isEmpty()) {
-            titleInput.setError("Name required");
+            titleInput.setError(text.titleRequired());
             titleInput.requestFocus();
             InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             if (manager != null) {
@@ -324,15 +330,22 @@ public class MainActivity extends Activity {
 
     private void confirmDelete(CountdownEvent event) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete countdown?")
-                .setMessage("This removes the countdown from this device.")
-                .setPositiveButton("Delete", (dialog, which) -> {
+                .setTitle(text.deleteCountdownQuestion())
+                .setMessage(text.deleteCountdownMessage())
+                .setPositiveButton(text.delete(), (dialog, which) -> {
                     events.remove(event);
                     store.saveEvents(events);
                     showHome();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(text.cancel(), null)
                 .show();
+    }
+
+    private void toggleLanguage() {
+        language = language.toggled();
+        text = new AppText(language);
+        store.saveLanguage(language);
+        showSettings();
     }
 
     private void addLabel(String value) {

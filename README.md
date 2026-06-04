@@ -8,6 +8,7 @@ DaysLite is a lightweight Android countdown app for important dates. It keeps ev
 - View days left, today, and days passed
 - Edit or delete countdowns
 - Store countdown data locally with SharedPreferences
+- Switch the in-app language between English and Chinese
 - In-app privacy policy page
 - No login, ads, analytics, or sensitive permissions
 

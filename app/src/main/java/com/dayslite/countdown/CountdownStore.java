@@ -13,6 +13,7 @@ import java.util.List;
 class CountdownStore {
     private static final String PREFS = "dayslite";
     private static final String KEY_EVENTS = "events";
+    private static final String KEY_LANGUAGE = "language";
 
     private final SharedPreferences preferences;
 
@@ -42,6 +43,16 @@ class CountdownStore {
         }
         preferences.edit()
                 .putString(KEY_EVENTS, array.toString())
+                .apply();
+    }
+
+    AppLanguage loadLanguage() {
+        return AppLanguage.fromCode(preferences.getString(KEY_LANGUAGE, AppLanguage.ENGLISH.code));
+    }
+
+    void saveLanguage(AppLanguage language) {
+        preferences.edit()
+                .putString(KEY_LANGUAGE, language.code)
                 .apply();
     }
 }

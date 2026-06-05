@@ -39,7 +39,7 @@ docs/play-store-listing.md
 ## Privacy
 
 - Privacy policy text prepared
-- Public privacy policy URL: Pending
+- Public privacy policy URL: `https://xudongjhdd.github.io/DaysLite/privacy-policy.html`
 - Data collected: No
 - Data shared: No
 - Sensitive permissions: None
@@ -50,6 +50,7 @@ Source:
 
 ```text
 docs/privacy-policy.md
+docs/privacy-policy.html
 ```
 
 ## Testing
@@ -61,13 +62,12 @@ docs/privacy-policy.md
 ## Release Artifact
 
 - Debug APK build: Available
-- Release AAB build: Pending keystore
-- Release signing keystore: Pending
+- Release AAB build: Available
+- Release signing keystore: Created locally and ignored by Git
 
 ## Open Items
 
 - Finish developer identity verification
-- Publish privacy policy page URL
-- Create release keystore
-- Generate first signed AAB
+- Enable GitHub Pages for the privacy policy page
+- Wait for the privacy policy URL to become reachable
 - Prepare 12 closed testers if required by the account

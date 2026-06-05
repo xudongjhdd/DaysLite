@@ -56,6 +56,8 @@ app/
       values/
       xml/
 docs/
+  index.html
+  privacy-policy.html
   play-store-listing.md
   privacy-policy.md
   screenshots.md
@@ -67,3 +69,9 @@ docs/
 ## Privacy
 
 Countdown events are stored locally on the user's device. DaysLite does not collect, transmit, sell, or share personal data in the current version.
+
+Privacy policy URL for Play Console:
+
+```text
+https://xudongjhdd.github.io/DaysLite/privacy-policy.html
+```

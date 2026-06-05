@@ -80,7 +80,7 @@ Default language suggestion: English (United States)
 
 Additional language suggestion: Chinese (Simplified)
 
-Privacy Policy: use the published URL for `docs/privacy-policy.md`
+Privacy Policy: https://xudongjhdd.github.io/DaysLite/privacy-policy.html
 
 Contact email: 99799543@qq.com
 

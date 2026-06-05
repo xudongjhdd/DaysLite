@@ -116,29 +116,38 @@ public class MainActivity extends Activity {
     }
 
     private View card(CountdownEvent event) {
+        boolean isPast = calculator.isPast(event);
+        String cardBackground = isPast ? "#F8FAFC" : "#FFFFFF";
+        String cardBorder = isPast ? "#CBD5E1" : "#E2E8F0";
+        String titleColor = isPast ? "#64748B" : "#0F172A";
+        String accentColor = isPast ? "#94A3B8" : event.color;
+        String dateColor = isPast ? "#94A3B8" : "#64748B";
+        String noteColor = isPast ? "#64748B" : "#334155";
+        String dotColor = isPast ? "#CBD5E1" : event.color;
+
         LinearLayout card = ui.vertical();
         card.setPadding(ui.dp(18), ui.dp(16), ui.dp(18), ui.dp(16));
-        card.setBackground(ui.round("#FFFFFF", 16, "#E2E8F0"));
+        card.setBackground(ui.round(cardBackground, 16, cardBorder));
         card.setOnClickListener(v -> showEditor(event));
 
         LinearLayout top = ui.horizontal();
         top.setGravity(Gravity.CENTER_VERTICAL);
         card.addView(top, ui.matchWrap());
 
-        TextView title = ui.text(event.title, 20, "#0F172A", Typeface.BOLD);
+        TextView title = ui.text(event.title, 20, titleColor, Typeface.BOLD);
         top.addView(title, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
         TextView dot = new TextView(this);
         dot.setWidth(ui.dp(16));
         dot.setHeight(ui.dp(16));
-        dot.setBackground(ui.round(event.color, 99, event.color));
+        dot.setBackground(ui.round(dotColor, 99, dotColor));
         top.addView(dot);
 
         ui.addSpace(card, 10);
 
-        TextView days = ui.text(calculator.daysLabel(event, language), 34, event.color, Typeface.BOLD);
+        TextView days = ui.text(calculator.daysLabel(event, language), 34, accentColor, Typeface.BOLD);
         card.addView(days);
-        card.addView(ui.text(calculator.formatDate(calculator.displayDate(event), language), 15, "#64748B", Typeface.NORMAL));
+        card.addView(ui.text(calculator.formatDate(calculator.displayDate(event), language), 15, dateColor, Typeface.NORMAL));
 
         if (event.repeatYearly) {
             ui.addSpace(card, 8);
@@ -148,7 +157,7 @@ public class MainActivity extends Activity {
 
         if (!event.note.trim().isEmpty()) {
             ui.addSpace(card, 8);
-            card.addView(ui.text(event.note, 14, "#334155", Typeface.NORMAL));
+            card.addView(ui.text(event.note, 14, noteColor, Typeface.NORMAL));
         }
         return card;
     }

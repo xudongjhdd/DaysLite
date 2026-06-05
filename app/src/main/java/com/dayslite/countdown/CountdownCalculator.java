@@ -26,6 +26,10 @@ class CountdownCalculator {
         return nextDate;
     }
 
+    boolean isPast(CountdownEvent event) {
+        return !event.repeatYearly && event.targetDate.isBefore(LocalDate.now());
+    }
+
     String daysLabel(CountdownEvent event, AppLanguage language) {
         long days = ChronoUnit.DAYS.between(LocalDate.now(), displayDate(event));
         if (days == 0) {

@@ -2,6 +2,14 @@ plugins {
     id "com.android.application"
 }
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { stream ->
+        localProperties.load(stream)
+    }
+}
+
 android {
     namespace "com.dayslite.countdown"
     compileSdk 35
@@ -13,5 +21,24 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            def releaseStoreFile = localProperties.getProperty("RELEASE_STORE_FILE")
+            if (releaseStoreFile != null) {
+                storeFile rootProject.file(releaseStoreFile)
+            }
+            storePassword localProperties.getProperty("RELEASE_STORE_PASSWORD")
+            keyAlias localProperties.getProperty("RELEASE_KEY_ALIAS")
+            keyPassword localProperties.getProperty("RELEASE_KEY_PASSWORD")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+        }
     }
 }

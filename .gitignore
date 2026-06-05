@@ -7,6 +7,9 @@ keystore/*.jks
 *.apk
 *.aab
 *.iml
+*.jks
+*.keystore
+keystore/
 
 .DS_Store
 .idea/

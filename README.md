@@ -32,6 +32,12 @@ The debug APK is generated at:
 app/build/outputs/apk/debug/app-debug.apk
 ```
 
+Release build and signing notes are in:
+
+```text
+docs/release-build.md
+```
+
 ## Project Structure
 
 ```text
@@ -53,6 +59,9 @@ docs/
   play-store-listing.md
   privacy-policy.md
   screenshots.md
+  release-build.md
+  play-console-checklist.md
+  closed-testing.md
 ```
 
 ## Privacy

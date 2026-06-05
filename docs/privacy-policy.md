@@ -1,6 +1,6 @@
 # Privacy Policy for DaysLite
 
-Effective date: [YYYY-MM-DD]
+Effective date: 2026-06-05
 
 DaysLite is a lightweight countdown app. This Privacy Policy explains how DaysLite handles user data.
 
@@ -8,13 +8,13 @@ DaysLite is a lightweight countdown app. This Privacy Policy explains how DaysLi
 
 DaysLite does not collect, transmit, sell, or share personal data.
 
-Countdown events, dates, colors, and notes created by users are stored locally on the user's device. This information is not sent to our servers or to third parties.
+Countdown events, target dates, colors, repeat settings, and notes created by users are stored locally on the user's device. This information is not sent to our servers or to third parties.
 
 ## Permissions
 
 DaysLite does not require account login, location access, contacts, photos, microphone, camera, or other sensitive permissions.
 
-If future versions add optional reminders, the app may request notification permission only for sending countdown reminders selected by the user.
+The current version of DaysLite does not request notification permission. If a future version adds optional reminders, the app may request notification permission only for sending reminders selected by the user.
 
 ## Data Storage and Deletion
 
@@ -28,7 +28,7 @@ DaysLite does not share user data with third parties.
 
 ## Children's Privacy
 
-DaysLite is not designed to knowingly collect personal information from children. Since DaysLite does not collect personal data, no children's personal data is transmitted or stored by us.
+DaysLite is suitable for general audiences and does not knowingly collect personal information from children. Since DaysLite does not collect personal data, no children's personal data is transmitted or stored by us.
 
 ## Security
 
@@ -40,8 +40,8 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 ## Contact
 
-Developer: [Developer Name]
+Developer: dong.xu
 
-Email: [Contact Email]
+Email: 99799543@qq.com
 
 App: DaysLite

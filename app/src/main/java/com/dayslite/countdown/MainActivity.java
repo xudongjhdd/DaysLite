@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
     private void showEditor(CountdownEvent event) {
         currentScreen = Screen.EDITOR;
         editingEvent = event;
-        selectedDate = event == null ? LocalDate.now() : event.targetDate;
+        selectedDate = event == null ? LocalDate.now().plusDays(1) : event.targetDate;
         selectedColor = event == null ? "#2563EB" : event.color;
 
         root = ui.vertical();

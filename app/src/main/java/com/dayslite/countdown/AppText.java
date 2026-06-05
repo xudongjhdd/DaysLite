@@ -55,6 +55,18 @@ class AppText {
         return language == AppLanguage.CHINESE ? "备注" : "Note";
     }
 
+    String repeatYearly() {
+        return language == AppLanguage.CHINESE ? "每年重复" : "Repeat yearly";
+    }
+
+    String repeatYearlyDetail() {
+        return language == AppLanguage.CHINESE ? "生日、纪念日等每年自动计算下一次日期" : "Automatically uses the next yearly occurrence";
+    }
+
+    String yearlyBadge() {
+        return language == AppLanguage.CHINESE ? "每年" : "Yearly";
+    }
+
     String optional() {
         return language == AppLanguage.CHINESE ? "可选" : "Optional";
     }

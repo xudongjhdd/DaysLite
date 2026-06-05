@@ -14,8 +14,20 @@ class CountdownCalculator {
         return date.format(language == AppLanguage.CHINESE ? CHINESE_DATE : ENGLISH_DATE);
     }
 
-    String daysLabel(LocalDate targetDate, AppLanguage language) {
-        long days = ChronoUnit.DAYS.between(LocalDate.now(), targetDate);
+    LocalDate displayDate(CountdownEvent event) {
+        if (!event.repeatYearly) {
+            return event.targetDate;
+        }
+        LocalDate today = LocalDate.now();
+        LocalDate nextDate = event.targetDate.withYear(today.getYear());
+        if (nextDate.isBefore(today)) {
+            nextDate = nextDate.plusYears(1);
+        }
+        return nextDate;
+    }
+
+    String daysLabel(CountdownEvent event, AppLanguage language) {
+        long days = ChronoUnit.DAYS.between(LocalDate.now(), displayDate(event));
         if (days == 0) {
             return language == AppLanguage.CHINESE ? "今天" : "Today";
         }
@@ -39,7 +51,7 @@ class CountdownCalculator {
         int upcoming = 0;
         LocalDate today = LocalDate.now();
         for (CountdownEvent event : events) {
-            if (!event.targetDate.isBefore(today)) {
+            if (!displayDate(event).isBefore(today)) {
                 upcoming++;
             }
         }

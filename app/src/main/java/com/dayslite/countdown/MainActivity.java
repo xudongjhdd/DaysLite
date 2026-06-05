@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
     private EditText noteInput;
     private TextView dateValue;
     private LinearLayout colorRow;
+    private CheckBox repeatYearlyInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,7 @@ public class MainActivity extends Activity {
             root.addView(emptyState(), ui.matchWrap());
         } else {
             List<CountdownEvent> sorted = new ArrayList<>(events);
-            Collections.sort(sorted, Comparator.comparing(event -> event.targetDate));
+            Collections.sort(sorted, Comparator.comparing(event -> calculator.displayDate(event)));
             for (CountdownEvent event : sorted) {
                 root.addView(card(event), ui.matchWrap());
                 ui.addSpace(root, 12);
@@ -134,9 +136,15 @@ public class MainActivity extends Activity {
 
         ui.addSpace(card, 10);
 
-        TextView days = ui.text(calculator.daysLabel(event.targetDate, language), 34, event.color, Typeface.BOLD);
+        TextView days = ui.text(calculator.daysLabel(event, language), 34, event.color, Typeface.BOLD);
         card.addView(days);
-        card.addView(ui.text(calculator.formatDate(event.targetDate, language), 15, "#64748B", Typeface.NORMAL));
+        card.addView(ui.text(calculator.formatDate(calculator.displayDate(event), language), 15, "#64748B", Typeface.NORMAL));
+
+        if (event.repeatYearly) {
+            ui.addSpace(card, 8);
+            TextView yearly = ui.pill(text.yearlyBadge(), "#EFF6FF", event.color);
+            card.addView(yearly);
+        }
 
         if (!event.note.trim().isEmpty()) {
             ui.addSpace(card, 8);
@@ -187,6 +195,18 @@ public class MainActivity extends Activity {
         noteInput.setMinLines(3);
         noteInput.setGravity(Gravity.TOP);
         root.addView(noteInput, ui.matchWrap());
+
+        ui.addSpace(root, 16);
+        repeatYearlyInput = new CheckBox(this);
+        repeatYearlyInput.setText(text.repeatYearly());
+        repeatYearlyInput.setTextSize(16);
+        repeatYearlyInput.setTextColor(Color.parseColor("#0F172A"));
+        repeatYearlyInput.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        repeatYearlyInput.setChecked(event != null && event.repeatYearly);
+        repeatYearlyInput.setPadding(0, ui.dp(8), 0, ui.dp(2));
+        root.addView(repeatYearlyInput, ui.matchWrap());
+        TextView repeatHelp = ui.text(text.repeatYearlyDetail(), 14, "#64748B", Typeface.NORMAL);
+        root.addView(repeatHelp, ui.matchWrap());
 
         ui.addSpace(root, 24);
         Button save = ui.primaryButton(text.save());
@@ -301,6 +321,7 @@ public class MainActivity extends Activity {
     private void saveEditor() {
         String title = titleInput.getText().toString().trim();
         String note = noteInput.getText().toString().trim();
+        boolean repeatYearly = repeatYearlyInput.isChecked();
         if (title.isEmpty()) {
             titleInput.setError(text.titleRequired());
             titleInput.requestFocus();
@@ -313,12 +334,13 @@ public class MainActivity extends Activity {
 
         long now = System.currentTimeMillis();
         if (editingEvent == null) {
-            events.add(new CountdownEvent(UUID.randomUUID().toString(), title, selectedDate, note, selectedColor, now, now));
+            events.add(new CountdownEvent(UUID.randomUUID().toString(), title, selectedDate, note, selectedColor, repeatYearly, now, now));
         } else {
             editingEvent.title = title;
             editingEvent.targetDate = selectedDate;
             editingEvent.note = note;
             editingEvent.color = selectedColor;
+            editingEvent.repeatYearly = repeatYearly;
             editingEvent.updatedAt = now;
         }
         store.saveEvents(events);

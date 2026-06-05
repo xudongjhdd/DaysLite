@@ -14,15 +14,17 @@ class CountdownEvent {
     LocalDate targetDate;
     String note;
     String color;
+    boolean repeatYearly;
     final long createdAt;
     long updatedAt;
 
-    CountdownEvent(String id, String title, LocalDate targetDate, String note, String color, long createdAt, long updatedAt) {
+    CountdownEvent(String id, String title, LocalDate targetDate, String note, String color, boolean repeatYearly, long createdAt, long updatedAt) {
         this.id = id;
         this.title = title;
         this.targetDate = targetDate;
         this.note = note;
         this.color = color;
+        this.repeatYearly = repeatYearly;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -35,6 +37,7 @@ class CountdownEvent {
             object.put("targetDate", targetDate.format(STORE_DATE));
             object.put("note", note);
             object.put("color", color);
+            object.put("repeatYearly", repeatYearly);
             object.put("createdAt", createdAt);
             object.put("updatedAt", updatedAt);
         } catch (JSONException ignored) {
@@ -49,6 +52,7 @@ class CountdownEvent {
                 LocalDate.parse(object.getString("targetDate"), STORE_DATE),
                 object.optString("note", ""),
                 object.optString("color", "#2563EB"),
+                object.optBoolean("repeatYearly", false),
                 object.optLong("createdAt", System.currentTimeMillis()),
                 object.optLong("updatedAt", System.currentTimeMillis())
         );

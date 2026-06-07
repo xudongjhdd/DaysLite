@@ -63,6 +63,7 @@ docs/
   screenshots.md
   release-build.md
   play-console-checklist.md
+  play-console-answers.md
   closed-testing.md
 ```
 

@@ -28,12 +28,14 @@ Use this while the developer identity verification is pending.
 - Full English description prepared
 - Chinese listing draft prepared
 - Release notes prepared
-- Screenshot checklist prepared
+- English phone screenshots prepared
+- Simplified Chinese phone screenshots prepared
 
 Source:
 
 ```text
 docs/play-store-listing.md
+docs/screenshots.md
 ```
 
 ## Privacy
@@ -60,6 +62,25 @@ docs/privacy-policy.html
 - Closed testing track: Prepare tester list
 - Production access: Wait for identity verification and required testing completion
 
+## App Content Declarations
+
+- Privacy policy answer prepared
+- Ads declaration prepared
+- App access answer prepared
+- Data Safety answers prepared
+- Account deletion answer prepared
+- Target audience answers prepared
+- Content rating answers prepared
+- Financial features declaration prepared
+- Health apps declaration prepared
+- Government and news-app answers prepared
+
+Source:
+
+```text
+docs/play-console-answers.md
+```
+
 ## Release Artifact
 
 - Debug APK build: Available
@@ -73,5 +94,7 @@ docs/privacy-policy.html
 ## Open Items
 
 - Finish developer identity verification
-- Capture phone screenshots on a connected device or emulator
 - Prepare 12 closed testers if required by the account
+- Create the app in Play Console after account access is available
+- Enter the prepared App content declarations
+- Upload the release AAB and store assets

@@ -40,6 +40,7 @@ docs/play-store-listing.md
 
 - Privacy policy text prepared
 - Public privacy policy URL: `https://xudongjhdd.github.io/DaysLite/privacy-policy.html`
+- Public privacy policy URL status: Published and reachable
 - Data collected: No
 - Data shared: No
 - Sensitive permissions: None
@@ -55,7 +56,7 @@ docs/privacy-policy.html
 
 ## Testing
 
-- Internal testing track: Prepare after AAB builds
+- Internal testing track: Release AAB is ready for upload
 - Closed testing track: Prepare tester list
 - Production access: Wait for identity verification and required testing completion
 
@@ -63,11 +64,14 @@ docs/privacy-policy.html
 
 - Debug APK build: Available
 - Release AAB build: Available
+- Release AAB path: `app/build/outputs/bundle/release/app-release.aab`
+- Release version: `1.0.0` (`versionCode 1`)
+- Release package: `com.dayslite.countdown`
+- Release signing verification: Passed
 - Release signing keystore: Created locally and ignored by Git
 
 ## Open Items
 
 - Finish developer identity verification
-- Enable GitHub Pages for the privacy policy page
-- Wait for the privacy policy URL to become reachable
+- Capture phone screenshots on a connected device or emulator
 - Prepare 12 closed testers if required by the account

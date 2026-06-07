@@ -73,7 +73,19 @@ Rules:
 
 - Run `./gradlew bundleRelease`
 - Confirm generated AAB exists at `app/build/outputs/bundle/release/`
+- Verify the AAB signature with `jarsigner -verify app/build/outputs/bundle/release/app-release.aab`
 - Install and smoke-test a debug build on a real device
 - Confirm package name is `com.dayslite.countdown`
 - Confirm privacy policy URL is ready
 - Confirm Play Console Data Safety answers match the final APK/AAB
+
+## Current Release Candidate
+
+- Version name: `1.0.0`
+- Version code: `1`
+- Package name: `com.dayslite.countdown`
+- Target SDK: `35`
+- Release AAB: generated successfully
+- AAB signature: verified
+- Sensitive permissions: none
+- Cloud backup and device transfer: disabled for countdown data

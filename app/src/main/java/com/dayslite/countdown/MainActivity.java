@@ -291,7 +291,7 @@ public class MainActivity extends Activity {
         bar.addView(back);
 
         TextView heading = ui.text(title, 24, "#0F172A", Typeface.BOLD);
-        heading.setGravity(Gravity.RIGHT);
+        heading.setGravity(Gravity.END);
         bar.addView(heading, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         ui.addSpace(root, 24);
     }

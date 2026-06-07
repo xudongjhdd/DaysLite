@@ -64,7 +64,9 @@ docs/
   release-build.md
   play-console-checklist.md
   play-console-answers.md
+  play-upload-manifest.md
   closed-testing.md
+  testing/
 ```
 
 ## Privacy

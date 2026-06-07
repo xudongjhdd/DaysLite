@@ -10,6 +10,7 @@ keystore/*.jks
 *.jks
 *.keystore
 keystore/
+dist/
 
 .DS_Store
 .idea/

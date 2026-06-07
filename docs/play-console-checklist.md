@@ -59,7 +59,11 @@ docs/privacy-policy.html
 ## Testing
 
 - Internal testing track: Release AAB is ready for upload
-- Closed testing track: Prepare tester list
+- Closed testing plan prepared
+- Tester roster template prepared
+- Tester invitations prepared in English and Chinese
+- Test result and feedback templates prepared
+- Production access answer draft prepared
 - Production access: Wait for identity verification and required testing completion
 
 ## App Content Declarations
@@ -90,11 +94,15 @@ docs/play-console-answers.md
 - Release package: `com.dayslite.countdown`
 - Release signing verification: Passed
 - Release signing keystore: Created locally and ignored by Git
+- Play upload manifest prepared
+- Local upload-package script prepared
 
 ## Open Items
 
 - Finish developer identity verification
-- Prepare 12 closed testers if required by the account
+- Recruit 15-20 potential testers to ensure at least 12 remain opted in
 - Create the app in Play Console after account access is available
 - Enter the prepared App content declarations
 - Upload the release AAB and store assets
+- Publish the closed test and start the 14-day continuous test period
+- Review the automatically generated pre-launch report

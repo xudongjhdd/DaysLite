@@ -245,7 +245,7 @@ public class MainActivity extends Activity {
         ui.addSpace(root, 12);
         root.addView(settingsItem(text.language(), text.languageDetail(), v -> toggleLanguage()), ui.matchWrap());
         ui.addSpace(root, 12);
-        root.addView(settingsItem(text.version(), "1.0.0", null), ui.matchWrap());
+        root.addView(settingsItem(text.version(), BuildConfig.VERSION_NAME, null), ui.matchWrap());
     }
 
     private void showPrivacyPolicy() {

@@ -22,16 +22,24 @@ class CountdownStore {
     }
 
     List<CountdownEvent> loadEvents() {
-        List<CountdownEvent> events = new ArrayList<>();
         String raw = preferences.getString(KEY_EVENTS, "[]");
+        return parseEvents(raw);
+    }
+
+    static List<CountdownEvent> parseEvents(String raw) {
+        List<CountdownEvent> events = new ArrayList<>();
+        JSONArray array;
         try {
-            JSONArray array = new JSONArray(raw);
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject item = array.getJSONObject(i);
-                events.add(CountdownEvent.fromJson(item));
-            }
+            array = new JSONArray(raw);
         } catch (JSONException ignored) {
-            events.clear();
+            return events;
+        }
+        for (int i = 0; i < array.length(); i++) {
+            try {
+                events.add(CountdownEvent.fromJson(array.getJSONObject(i)));
+            } catch (JSONException ignored) {
+                // skip this entry only, keep the rest of the data
+            }
         }
         return events;
     }

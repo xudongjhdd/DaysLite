@@ -141,8 +141,8 @@ class AppText {
 
     String privacySupport() {
         return language == AppLanguage.CHINESE
-                ? "如需支持，请使用开发者提供的 GitHub 仓库联系方式。"
-                : "For support, use the GitHub repository contact path provided by the developer.";
+                ? "如需支持，请通过邮箱联系开发者：xudongboy@gmail.com。"
+                : "For support, contact the developer at xudongboy@gmail.com.";
     }
 
     String titleRequired() {

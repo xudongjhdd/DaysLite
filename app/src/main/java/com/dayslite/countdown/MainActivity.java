@@ -46,12 +46,26 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyLightNavigationBarFallback();
         store = new CountdownStore(this);
         ui = new UiKit(this);
         language = store.loadLanguage();
         text = new AppText(language);
         events.addAll(store.loadEvents());
         showHome();
+    }
+
+    // Android 8.0 (API 26) lacks the windowLightNavigationBar theme attribute (added in
+    // API 27, applied via values-v27/styles.xml), but the equivalent view flag exists since
+    // API 26. Set it so the three-button navigation icons render dark and stay readable on
+    // the light navigation bar instead of blending into it.
+    private void applyLightNavigationBarFallback() {
+        if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.O) {
+            View decor = getWindow().getDecorView();
+            decor.setSystemUiVisibility(decor.getSystemUiVisibility()
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
     }
 
     private void showHome() {

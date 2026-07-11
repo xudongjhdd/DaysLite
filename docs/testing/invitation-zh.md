@@ -26,7 +26,7 @@ Google Play 要求测试者连续加入封闭测试至少 14 天。测试期间�
 反馈邮箱：
 
 ```text
-99799543@qq.com
+xudongboy@gmail.com
 ```
 
 报告问题时，请提供手机型号、Android 版本和相关截图。

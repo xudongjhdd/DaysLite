@@ -42,6 +42,6 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 Developer: dong.xu
 
-Email: 99799543@qq.com
+Email: xudongboy@gmail.com
 
 App: DaysLite

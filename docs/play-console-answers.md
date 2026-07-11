@@ -179,7 +179,7 @@ Utility, productivity, communication, or other non-game app
 Contact email:
 
 ```text
-99799543@qq.com
+xudongboy@gmail.com
 ```
 
 Use these answers for content questions:
@@ -268,7 +268,7 @@ DaysLite is not a news or magazine app.
 - In-app products: None
 - Default language: English (United States)
 - Additional language: Chinese (Simplified)
-- Contact email: `99799543@qq.com`
+- Contact email: `xudongboy@gmail.com`
 - Privacy policy: `https://xudongjhdd.github.io/DaysLite/privacy-policy.html`
 
 ## Review Notes

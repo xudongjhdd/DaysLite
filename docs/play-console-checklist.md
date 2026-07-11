@@ -7,7 +7,7 @@ Use this while the developer identity verification is pending.
 - Developer account payment: Done
 - Identity verification: Pending
 - Developer name: `dong.xu`
-- Contact email: `99799543@qq.com`
+- Contact email: `xudongboy@gmail.com`
 
 ## App Setup
 

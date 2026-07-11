@@ -82,7 +82,7 @@ Additional language suggestion: Chinese (Simplified)
 
 Privacy Policy: https://xudongjhdd.github.io/DaysLite/privacy-policy.html
 
-Contact email: 99799543@qq.com
+Contact email: xudongboy@gmail.com
 
 Developer name: dong.xu
 

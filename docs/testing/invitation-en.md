@@ -26,7 +26,7 @@ Please create, edit, and delete countdowns; try yearly repeat, notes, colors, an
 Feedback:
 
 ```text
-Email: 99799543@qq.com
+Email: xudongboy@gmail.com
 ```
 
 Please include your phone model, Android version, and a screenshot when reporting an issue.

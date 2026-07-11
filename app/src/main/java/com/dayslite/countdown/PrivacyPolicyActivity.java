@@ -16,7 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class PrivacyPolicyActivity extends Activity {
-    private static final String PRIVACY_URL = "https://xudongjhdd.github.io/DaysLite/privacy-policy.html";
+    private static final String PRIVACY_URL_EN = "https://xudongjhdd.github.io/DaysLite/privacy-policy.html";
+    private static final String PRIVACY_URL_ZH = "https://xudongjhdd.github.io/DaysLite/privacy-policy.zh.html";
 
     private UiKit ui;
     private AppText text;
@@ -28,7 +29,9 @@ public class PrivacyPolicyActivity extends Activity {
         super.onCreate(savedInstanceState);
         UiKit.applyLightNavigationBar(this);
         ui = new UiKit(this);
-        text = new AppText(new CountdownStore(this).loadLanguage());
+        AppLanguage language = new CountdownStore(this).loadLanguage();
+        text = new AppText(language);
+        String url = language == AppLanguage.CHINESE ? PRIVACY_URL_ZH : PRIVACY_URL_EN;
 
         LinearLayout root = ui.vertical();
         root.setBackgroundColor(Color.parseColor("#F8FAFC"));
@@ -73,7 +76,7 @@ public class PrivacyPolicyActivity extends Activity {
         root.addView(webView, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
 
-        webView.loadUrl(PRIVACY_URL);
+        webView.loadUrl(url);
     }
 
     private void showError() {

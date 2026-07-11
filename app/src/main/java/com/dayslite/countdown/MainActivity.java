@@ -3,6 +3,7 @@ package com.dayslite.countdown;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        applyLightNavigationBarFallback();
+        UiKit.applyLightNavigationBar(this);
         store = new CountdownStore(this);
         ui = new UiKit(this);
         language = store.loadLanguage();
@@ -55,16 +56,18 @@ public class MainActivity extends Activity {
         showHome();
     }
 
-    // Android 8.0 (API 26) lacks the windowLightNavigationBar theme attribute (added in
-    // API 27, applied via values-v27/styles.xml), but the equivalent view flag exists since
-    // API 26. Set it so the three-button navigation icons render dark and stay readable on
-    // the light navigation bar instead of blending into it.
-    private void applyLightNavigationBarFallback() {
-        if (android.os.Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.O) {
-            View decor = getWindow().getDecorView();
-            decor.setSystemUiVisibility(decor.getSystemUiVisibility()
-                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Language can be changed in SettingsActivity; pick up the new value and re-render
+        // the home screen so the summary and labels reflect it after returning.
+        AppLanguage stored = store.loadLanguage();
+        if (stored != language) {
+            language = stored;
+            text = new AppText(language);
+            if (currentScreen == Screen.HOME) {
+                showHome();
+            }
         }
     }
 
@@ -89,7 +92,7 @@ public class MainActivity extends Activity {
         titles.addView(ui.text(calculator.summaryText(events, language), 15, "#64748B", Typeface.NORMAL));
 
         TextView settings = ui.pill(text.settings(), "#E2E8F0", "#0F172A");
-        settings.setOnClickListener(v -> showSettings());
+        settings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
         header.addView(settings);
 
         ui.addSpace(root, 22);
@@ -245,56 +248,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void showSettings() {
-        currentScreen = Screen.SETTINGS;
-        root = ui.vertical();
-        root.setBackgroundColor(Color.parseColor("#F8FAFC"));
-        root.setPadding(ui.dp(20), ui.dp(20), ui.dp(20), ui.dp(20));
-        setContentView(root);
-
-        addTopBar(text.settingsTitle(), v -> showHome());
-        root.addView(settingsItem(text.privacyPolicy(), text.privacyDetail(), v -> showPrivacyPolicy()), ui.matchWrap());
-        ui.addSpace(root, 12);
-        root.addView(settingsItem(text.localStorage(), text.localStorageDetail(), null), ui.matchWrap());
-        ui.addSpace(root, 12);
-        root.addView(settingsItem(text.language(), text.languageDetail(), v -> toggleLanguage()), ui.matchWrap());
-        ui.addSpace(root, 12);
-        root.addView(settingsItem(text.version(), BuildConfig.VERSION_NAME, null), ui.matchWrap());
-    }
-
-    private void showPrivacyPolicy() {
-        currentScreen = Screen.PRIVACY;
-        root = ui.vertical();
-        root.setBackgroundColor(Color.parseColor("#F8FAFC"));
-        root.setPadding(ui.dp(20), ui.dp(20), ui.dp(20), ui.dp(20));
-        ScrollView scrollView = new ScrollView(this);
-        scrollView.addView(root);
-        setContentView(scrollView);
-
-        addTopBar(text.privacyPolicy(), v -> showSettings());
-        root.addView(ui.text(text.privacyIntro(), 18, "#0F172A", Typeface.BOLD));
-        ui.addSpace(root, 12);
-        root.addView(ui.text(text.privacyLocalData(), 15, "#334155", Typeface.NORMAL));
-        ui.addSpace(root, 12);
-        root.addView(ui.text(text.privacyPermissions(), 15, "#334155", Typeface.NORMAL));
-        ui.addSpace(root, 12);
-        root.addView(ui.text(text.privacyDeletion(), 15, "#334155", Typeface.NORMAL));
-        ui.addSpace(root, 12);
-        root.addView(ui.text(text.privacySupport(), 15, "#64748B", Typeface.NORMAL));
-    }
-
-    private View settingsItem(String title, String detail, View.OnClickListener listener) {
-        LinearLayout item = ui.vertical();
-        item.setPadding(ui.dp(16), ui.dp(14), ui.dp(16), ui.dp(14));
-        item.setBackground(ui.round("#FFFFFF", 16, "#E2E8F0"));
-        item.addView(ui.text(title, 18, "#0F172A", Typeface.BOLD));
-        item.addView(ui.text(detail, 14, "#64748B", Typeface.NORMAL));
-        if (listener != null) {
-            item.setOnClickListener(listener);
-        }
-        return item;
-    }
-
     private void addTopBar(String title, View.OnClickListener backAction) {
         LinearLayout bar = ui.horizontal();
         bar.setGravity(Gravity.CENTER_VERTICAL);
@@ -383,13 +336,6 @@ public class MainActivity extends Activity {
                 .show();
     }
 
-    private void toggleLanguage() {
-        language = language.toggled();
-        text = new AppText(language);
-        store.saveLanguage(language);
-        showSettings();
-    }
-
     private void addLabel(String value) {
         TextView label = ui.text(value, 14, "#64748B", Typeface.BOLD);
         root.addView(label);
@@ -402,17 +348,11 @@ public class MainActivity extends Activity {
             finish();
             return;
         }
-        if (currentScreen == Screen.PRIVACY) {
-            showSettings();
-            return;
-        }
         showHome();
     }
 
     private enum Screen {
         HOME,
-        EDITOR,
-        SETTINGS,
-        PRIVACY
+        EDITOR
     }
 }

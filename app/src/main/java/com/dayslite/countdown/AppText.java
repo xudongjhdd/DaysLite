@@ -115,34 +115,10 @@ class AppText {
         return language == AppLanguage.CHINESE ? "版本" : "Version";
     }
 
-    String privacyIntro() {
+    String privacyLoadError() {
         return language == AppLanguage.CHINESE
-                ? "DaysLite 不会收集、传输、出售或共享个人数据。"
-                : "DaysLite does not collect, transmit, sell, or share personal data.";
-    }
-
-    String privacyLocalData() {
-        return language == AppLanguage.CHINESE
-                ? "你创建的倒计时事件、日期、颜色和备注只会保存在你的设备本地，不会发送到 DaysLite 服务器或第三方。"
-                : "Countdown events, dates, colors, and notes are stored locally on your device. They are not sent to DaysLite servers or shared with third parties.";
-    }
-
-    String privacyPermissions() {
-        return language == AppLanguage.CHINESE
-                ? "DaysLite 不需要账号登录、位置、联系人、照片、麦克风、相机或其他敏感权限。"
-                : "DaysLite does not require account login, location access, contacts, photos, microphone, camera, or other sensitive permissions.";
-    }
-
-    String privacyDeletion() {
-        return language == AppLanguage.CHINESE
-                ? "你可以在应用内删除单个倒计时，也可以通过卸载 DaysLite 或在 Android 系统设置中清除应用存储来删除全部数据。"
-                : "You can delete individual countdowns inside the app. You can also delete all app data by uninstalling DaysLite or clearing app storage from Android system settings.";
-    }
-
-    String privacySupport() {
-        return language == AppLanguage.CHINESE
-                ? "如需支持，请通过邮箱联系开发者：xudongboy@gmail.com。"
-                : "For support, contact the developer at xudongboy@gmail.com.";
+                ? "无法加载隐私政策，请检查网络连接后重试。"
+                : "Couldn't load the privacy policy. Please check your connection and try again.";
     }
 
     String titleRequired() {

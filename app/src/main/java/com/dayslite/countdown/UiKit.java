@@ -1,9 +1,11 @@
 package com.dayslite.countdown;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,19 @@ class UiKit {
 
     UiKit(Context context) {
         this.context = context;
+    }
+
+    // Android 8.0 (API 26) lacks the windowLightNavigationBar theme attribute (added in
+    // API 27, applied via values-v27/styles.xml), but the equivalent view flag exists since
+    // API 26. Set it so the three-button navigation icons render dark and stay readable on
+    // the light navigation bar instead of blending into it.
+    static void applyLightNavigationBar(Activity activity) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {
+            View decor = activity.getWindow().getDecorView();
+            decor.setSystemUiVisibility(decor.getSystemUiVisibility()
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
     }
 
     EditText input(String hint) {

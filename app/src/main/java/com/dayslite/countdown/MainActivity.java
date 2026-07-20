@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -340,6 +342,32 @@ public class MainActivity extends Activity {
         TextView label = ui.text(value, 14, "#64748B", Typeface.BOLD);
         root.addView(label);
         ui.addSpace(root, 8);
+    }
+
+    // Tapping anywhere outside the focused input (blank space, buttons, the scroll area)
+    // dismisses the soft keyboard and drops focus, so the editor does not stay stuck
+    // behind the keyboard.
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View focused = getCurrentFocus();
+            if (focused instanceof EditText && !touchInside(focused, event)) {
+                focused.clearFocus();
+                InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                if (manager != null) {
+                    manager.hideSoftInputFromWindow(focused.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+    private boolean touchInside(View view, MotionEvent event) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        Rect bounds = new Rect(location[0], location[1],
+                location[0] + view.getWidth(), location[1] + view.getHeight());
+        return bounds.contains((int) event.getRawX(), (int) event.getRawY());
     }
 
     @Override

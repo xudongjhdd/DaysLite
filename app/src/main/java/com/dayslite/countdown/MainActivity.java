@@ -1,5 +1,6 @@
 package com.dayslite.countdown;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.window.OnBackInvokedDispatcher;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,6 +52,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
+                    OnBackInvokedDispatcher.PRIORITY_DEFAULT,
+                    this::handleBackNavigation);
+        }
         UiKit.applyLightNavigationBar(this);
         store = new CountdownStore(this);
         ui = new UiKit(this);
@@ -371,7 +379,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    @SuppressLint("GestureBackNavigation")
+    @SuppressWarnings("deprecation")
     public void onBackPressed() {
+        handleBackNavigation();
+    }
+
+    private void handleBackNavigation() {
         if (currentScreen == Screen.HOME) {
             finish();
             return;

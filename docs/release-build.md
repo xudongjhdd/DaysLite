@@ -74,6 +74,7 @@ Rules:
 - Run `./gradlew bundleRelease`
 - Confirm generated AAB exists at `app/build/outputs/bundle/release/`
 - Verify the AAB signature with `jarsigner -verify app/build/outputs/bundle/release/app-release.aab`
+- Retain `app/build/outputs/mapping/release/mapping.txt` for Play Console deobfuscation and production crash analysis
 - Install and smoke-test a debug build on a real device
 - Confirm package name is `com.dayslite.countdown`
 - Confirm privacy policy URL is ready
@@ -81,11 +82,14 @@ Rules:
 
 ## Current Release Candidate
 
-- Version name: `1.0.0`
-- Version code: `1`
+- Version name: `1.0.9`
+- Version code: `9`
 - Package name: `com.dayslite.countdown`
-- Target SDK: `35`
-- Release AAB: generated successfully
+- Target SDK: `36`
+- Release AAB: `app/build/outputs/bundle/release/app-release.aab`
 - AAB signature: verified
+- R8 code shrinking, optimization, and obfuscation: enabled
+- Unused resource shrinking: enabled
+- R8 mapping: `app/build/outputs/mapping/release/mapping.txt`
 - Sensitive permissions: none
 - Cloud backup and device transfer: disabled for countdown data

@@ -6,8 +6,8 @@
 
 - [x] 已用个人身份申请 Apple Developer Program 并支付 99 美元。
 - [x] 会员状态已从“待处理”变为有效（用户已确认）。
-- [ ] 已确认当前团队为个人团队，Account Holder 是本人。
-- [ ] 已记录 Team ID 和会员到期日（不要记录密码或验证码）。
+- [x] 已确认签名团队为个人团队，证书持有人是本人。
+- [x] 已记录 Team ID `XAQW5BWUB6`；会员到期日仍需核对（不要记录密码或验证码）。
 - [ ] 已在 App Store Connect 接受最新协议。
 - [ ] 已确认商店显示的个人开发者名称符合预期。
 
@@ -23,7 +23,7 @@
 - [x] 单元测试 26 项通过。
 - [x] 1024×1024、无 alpha 的 App 图标已生成。
 - [x] `PrivacyInfo.xcprivacy` 已声明 UserDefaults 必需原因 `CA92.1`。
-- [ ] 会员激活后用个人 Team 完成自动签名。
+- [x] 已用个人 Team 完成自动签名和真机 Debug 构建。
 - [ ] 真机安装并完成核心流程验收。
 
 ## C. App Store Connect 记录

@@ -76,6 +76,27 @@ final class AppModel {
         store.saveLanguage(language)
     }
 
+    func sortedEvents(today: LocalDate) -> [CountdownEvent] {
+        let calculator = CountdownCalculator(calendar: .autoupdatingCurrent)
+        return events.sorted { lhs, rhs in
+            let leftDate = calculator.displayDate(for: lhs, today: today)
+            let rightDate = calculator.displayDate(for: rhs, today: today)
+            if leftDate == rightDate {
+                return lhs.createdAt < rhs.createdAt
+            }
+            return leftDate < rightDate
+        }
+    }
+
+    func upcomingCount(today: LocalDate) -> Int {
+        let calculator = CountdownCalculator(calendar: .autoupdatingCurrent)
+        return events.count { !calculator.isPast($0, today: today) }
+    }
+
+    func clearStoreError() {
+        storeError = nil
+    }
+
     private func persistEvents() {
         switch store.saveEvents(events) {
         case .success:

@@ -46,6 +46,55 @@ final class AppModelTests: XCTestCase {
         XCTAssertEqual(store.loadLanguage(), .chinese)
     }
 
+    func testSortedEventsUsesNextOccurrenceForYearlyEvents() throws {
+        let model = AppModel(store: CountdownStore(defaults: try makeDefaults()))
+        model.add(
+            title: "Next Year",
+            targetDate: .init(year: 2020, month: 8, day: 5),
+            note: "",
+            colorHex: "#2563EB",
+            repeatYearly: true
+        )
+        model.add(
+            title: "Tomorrow",
+            targetDate: .init(year: 2026, month: 8, day: 7),
+            note: "",
+            colorHex: "#10B981",
+            repeatYearly: false
+        )
+
+        let titles = model.sortedEvents(today: .init(year: 2026, month: 8, day: 6)).map(\.title)
+
+        XCTAssertEqual(titles, ["Tomorrow", "Next Year"])
+    }
+
+    func testUpcomingCountExcludesPastOneOffAndIncludesYearlyEvents() throws {
+        let model = AppModel(store: CountdownStore(defaults: try makeDefaults()))
+        model.add(
+            title: "Past",
+            targetDate: .init(year: 2026, month: 8, day: 5),
+            note: "",
+            colorHex: "#64748B",
+            repeatYearly: false
+        )
+        model.add(
+            title: "Tomorrow",
+            targetDate: .init(year: 2026, month: 8, day: 7),
+            note: "",
+            colorHex: "#10B981",
+            repeatYearly: false
+        )
+        model.add(
+            title: "Yearly",
+            targetDate: .init(year: 2020, month: 8, day: 5),
+            note: "",
+            colorHex: "#EC4899",
+            repeatYearly: true
+        )
+
+        XCTAssertEqual(model.upcomingCount(today: .init(year: 2026, month: 8, day: 6)), 2)
+    }
+
     private func makeDefaults() throws -> UserDefaults {
         let suiteName = "DaysLiteTests.\(name)"
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))

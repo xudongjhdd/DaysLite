@@ -1,8 +1,70 @@
 import SwiftUI
 
+enum EditorSelection: Identifiable {
+    case new
+    case existing(UUID)
+
+    var id: String {
+        switch self {
+        case .new:
+            return "new"
+        case .existing(let id):
+            return id.uuidString
+        }
+    }
+}
+
 struct RootView: View {
+    @Environment(AppModel.self) private var model
+    @State private var editorSelection: EditorSelection?
+    @State private var showsSettings = false
+
+    private var text: AppText {
+        AppText(language: model.language)
+    }
+
     var body: some View {
-        Text("DaysLite")
-            .accessibilityIdentifier("root.dayslite")
+        HomeView(
+            onAdd: { editorSelection = .new },
+            onEdit: { editorSelection = .existing($0) },
+            onSettings: { showsSettings = true }
+        )
+        .sheet(item: $editorSelection) { selection in
+            NavigationStack {
+                Text(editorTitle(for: selection))
+                    .navigationTitle(editorTitle(for: selection))
+            }
+        }
+        .sheet(isPresented: $showsSettings) {
+            NavigationStack {
+                Text(text.settings)
+                    .navigationTitle(text.settingsTitle)
+            }
+        }
+        .alert(text.saveFailure, isPresented: storeErrorBinding) {
+            Button(text.dismiss) {
+                model.clearStoreError()
+            }
+        }
+    }
+
+    private var storeErrorBinding: Binding<Bool> {
+        Binding(
+            get: { model.storeError != nil },
+            set: { isPresented in
+                if !isPresented {
+                    model.clearStoreError()
+                }
+            }
+        )
+    }
+
+    private func editorTitle(for selection: EditorSelection) -> String {
+        switch selection {
+        case .new:
+            return text.addCountdownTitle
+        case .existing:
+            return text.editCountdownTitle
+        }
     }
 }

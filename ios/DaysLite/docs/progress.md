@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：首页与倒计时卡片实现
+- 当前阶段：新增与编辑倒计时流程
 - 总体状态：进行中
 - 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：以 TDD 实现事件排序、即将到来统计和首页 SwiftUI 界面
+- 下一步：以 TDD 实现编辑草稿、表单校验、保存和删除确认
 
 ## 里程碑
 
@@ -26,7 +26,7 @@
 | Apple Developer Program 激活 | 阻塞 |  | 用户 / Apple | 已支付 99 美元；账户显示“待处理” | 等待最长 48 小时后检查 Active、Team ID 和确认邮件 |
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
-| 核心功能实现 | 进行中 |  | Codex | 完整测试 19 项通过，覆盖日期、倒计时、存储、状态和双语文案 | 下一步：首页、编辑页和设置页 |
+| 核心功能实现 | 进行中 |  | Codex | 通用模拟器构建成功；完整测试 21 项通过；空白与填充首页截图已核对 | 下一步：编辑页和设置页 |
 | 自动化测试与模拟器验收 | 未开始 |  | Codex |  | 等待功能实现 |
 | 真机签名与测试 | 未开始 |  | 用户 / Codex |  | 需要会员激活及真机连接 |
 | Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
@@ -80,3 +80,5 @@
 - 以 TDD 实现 `LocalDate`、`CountdownEvent` 和 `CountdownCalculator`；8 项日期与年度重复测试通过。
 - 以 TDD 实现本地 JSON 存储、逐条坏数据恢复、旧字段兼容、语言保存和 `AppModel` 即时持久化；7 项针对性测试通过。
 - 建立完整的集中式中英文 `AppText` 文案与确定性日期/天数格式；完整 iOS 测试 19 项通过。
+- 完成 SwiftUI 首页、空状态、排序后的倒计时卡片、年度标记、过期弱化、设置与新增导航入口；完整测试 21 项通过。
+- 模拟器视觉证据：`StoreAssets/screenshots/development/home-empty.png`、`StoreAssets/screenshots/development/home-populated.png`（均为 1206×2622）。

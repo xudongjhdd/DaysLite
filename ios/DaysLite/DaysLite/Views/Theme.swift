@@ -21,4 +21,19 @@ enum Theme {
         green: 99.0 / 255.0,
         blue: 235.0 / 255.0
     )
+    static let card = Color.white
+    static let border = Color.black.opacity(0.06)
+    static let shadow = Color.black.opacity(0.06)
+    static let eventColors = ["#2563EB", "#10B981", "#F59E0B", "#EC4899", "#8B5CF6", "#64748B"]
+}
+
+extension Color {
+    init(hex: String) {
+        let raw = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        let value = UInt64(raw, radix: 16) ?? 0x2563EB
+        let red = Double((value >> 16) & 0xFF) / 255
+        let green = Double((value >> 8) & 0xFF) / 255
+        let blue = Double(value & 0xFF) / 255
+        self.init(red: red, green: green, blue: blue)
+    }
 }

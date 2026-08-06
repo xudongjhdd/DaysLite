@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：商店资料与隐私申报
-- 总体状态：进行中（内部 TestFlight 真机验收已完成）
-- 当前阻塞：正式提交前需完成在线元数据及合规问卷；App Review 联系电话需由用户提供；欧盟分发前仍需如实完成交易商状态申报
-- 下一步：保存 App Store 版本资料、上传已完成的双语截图，并填写隐私与年龄分级
+- 当前阶段：App Review
+- 总体状态：阻塞（版本 1.0 已正式提交，正在等待 Apple 审核）
+- 当前阻塞：Apple 审核尚未完成；审核通过后仍需由账号持有人手动发布
+- 下一步：关注 App Store Connect 和邮件中的审核状态；若通过则手动发布，若被拒则记录原因并修复后重新提交
 
 ## 里程碑
 
@@ -32,8 +32,8 @@
 | App ID 与 App Store Connect 记录 | 已完成 | 2026-08-06 | 用户 / Codex | 显式 Bundle ID `com.dayslite.countdown.ios`；商店名 `DaysLite: Simple Countdown`；Apple App ID `6798545461`；iOS 1.0 状态为“准备提交” | 无 |
 | Release Archive | 已完成 | 2026-08-06 | Codex | `xcodebuild archive` 成功；App Store Connect 本地导出成功；版本 1.0.0 (1)、arm64、Team `XAQW5BWUB6`、Cloud Managed Apple Distribution、`get-task-allow=false` | 上传前取得用户确认 |
 | TestFlight | 已完成 | 2026-08-06 | 用户 / Codex | `DaysLite Internal` 群组包含构建 1；用户确认已通过 iPhone TestFlight 成功安装并完成真机验收 | 无 |
-| 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册、检查清单及英文/简体中文各 4 张最终截图已完成 | App Store Connect 在线申报待完成 |
-| App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
+| 商店资料与隐私申报 | 已完成 | 2026-08-06 | 用户 / Codex | 双语文案和截图已保存；隐私政策 URL、App Privacy“未收集数据”、4+ 年龄分级、无第三方内容版权声明、免费定价、174 个销售地区及 DSA 非交易者状态均已生效 | 无 |
+| App Review | 进行中 |  | 用户 / Apple | iOS 1.0 / 构建 `1.0.0 (1)` 已于 2026-08-06 17:09 提交；提交 ID `a37bd327-e2d5-4ec2-891c-b810ed5ee24d`；状态“等待审核” | 等待 Apple 审核，官方页面提示最长可能需要 48 小时 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
 | 发布流程复盘 | 未开始 |  | 用户 / Codex |  | 发布后更新手册 |
 
@@ -120,3 +120,11 @@
 - 生成英文与简体中文各 4 张、共 8 张 6.9 英寸 iPhone 最终截图，全部为 1320×2868 PNG，并逐张完成视觉核对。
 - 截图验收发现隐私政策 Markdown 的块级间距被 `Text(AttributedString)` 合并；以 TDD 增加块解析和分段 SwiftUI 排版，完整测试增至 27 项且全部通过。
 - App Store Connect 英文版本页的描述、关键词、支持 URL、版权、审核联系人与审核备注已预填；等待用户提供审核联系电话后保存。
+- 保存英文和简体中文商店文案，并分别上传 4 张 6.9 英寸 iPhone 最终截图；简体中文 6.5 英寸截图继承对应的 6.9 英寸素材。
+- App 信息设置为英文（美国）主要语言、主分类“效率”、次分类“工具”，并保存英文副标题 `Countdown important days` 与简体中文副标题“重要日子的轻量倒计时”。
+- 内容版权声明为“不包含、显示或访问第三方内容”；年龄分级问卷按实际功能全部选择“无/否”，最终全球分级为 4+（有区域例外）。
+- App Privacy 已发布为“未收集数据”，英文和简体中文隐私政策 URL 均为 `https://xudongjhdd.github.io/DaysLite/privacy-policy.html`。
+- App 定价设为免费；销售范围设为 174 个国家或地区，暂不包含中国大陆；保留在搭载 Apple 芯片的 Mac 上提供兼容版本。
+- 账号级 DSA 状态按用户确认申报为“非交易者”，App Store Connect 显示监管要求已完成且状态有效。
+- 版本 1.0 选择最终构建 `1.0.0 (1)`，完成 Add for Review，并经用户最终确认正式提交 Apple 审核。
+- 审核提交详情：提交时间 2026-08-06 17:09，提交 ID `a37bd327-e2d5-4ec2-891c-b810ed5ee24d`，当前状态“等待审核”；页面提示审核最多可能需要 48 小时。

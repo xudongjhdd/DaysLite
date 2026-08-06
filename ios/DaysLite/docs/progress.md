@@ -13,8 +13,8 @@
 
 - 当前阶段：商店资料与隐私申报
 - 总体状态：进行中（内部 TestFlight 真机验收已完成）
-- 当前阻塞：正式提交前需完成商店截图、在线元数据及合规问卷；欧盟分发前仍需如实完成交易商状态申报
-- 下一步：填写 App Store 版本资料、隐私与年龄分级，并上传最终商店截图
+- 当前阻塞：正式提交前需完成在线元数据及合规问卷；App Review 联系电话需由用户提供；欧盟分发前仍需如实完成交易商状态申报
+- 下一步：保存 App Store 版本资料、上传已完成的双语截图，并填写隐私与年龄分级
 
 ## 里程碑
 
@@ -27,12 +27,12 @@
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
 | 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
-| 自动化测试与模拟器验收 | 已完成 | 2026-08-06 | Codex | 功能测试 26 项、Release 模拟器构建和多轮模拟器手工验收已通过 | 无 |
+| 自动化测试与模拟器验收 | 已完成 | 2026-08-06 | Codex | 功能测试 27 项、Release 模拟器构建和多轮模拟器手工验收已通过 | 无 |
 | 真机签名与测试 | 已完成 | 2026-08-06 | 用户 / Codex | Team `XAQW5BWUB6` 自动签名；DaysLite 已在 iPhone 15 Pro 完成安装、启动和用户核心流程验收 | 无 |
 | App ID 与 App Store Connect 记录 | 已完成 | 2026-08-06 | 用户 / Codex | 显式 Bundle ID `com.dayslite.countdown.ios`；商店名 `DaysLite: Simple Countdown`；Apple App ID `6798545461`；iOS 1.0 状态为“准备提交” | 无 |
 | Release Archive | 已完成 | 2026-08-06 | Codex | `xcodebuild archive` 成功；App Store Connect 本地导出成功；版本 1.0.0 (1)、arm64、Team `XAQW5BWUB6`、Cloud Managed Apple Distribution、`get-task-allow=false` | 上传前取得用户确认 |
 | TestFlight | 已完成 | 2026-08-06 | 用户 / Codex | `DaysLite Internal` 群组包含构建 1；用户确认已通过 iPhone TestFlight 成功安装并完成真机验收 | 无 |
-| 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
+| 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册、检查清单及英文/简体中文各 4 张最终截图已完成 | App Store Connect 在线申报待完成 |
 | App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
 | 发布流程复盘 | 未开始 |  | 用户 / Codex |  | 发布后更新手册 |
@@ -117,3 +117,6 @@
 - 创建内部测试群组 `DaysLite Internal`，关闭不可修改的自动分发选项，以保留后续构建的手动控制。
 - 将版本 `1.0.0` 构建 `1` 加入群组，状态为“准备测试”，并邀请账号持有人 `xudongboy@gmail.com`；App Store Connect 显示 1 个测试员、1 个构建版本、状态“已邀请”。
 - 用户确认已通过 iPhone TestFlight 成功安装 DaysLite，并要求将“内部 TestFlight 真机验收”标记完成；TestFlight 分发与验收里程碑完成。
+- 生成英文与简体中文各 4 张、共 8 张 6.9 英寸 iPhone 最终截图，全部为 1320×2868 PNG，并逐张完成视觉核对。
+- 截图验收发现隐私政策 Markdown 的块级间距被 `Text(AttributedString)` 合并；以 TDD 增加块解析和分段 SwiftUI 排版，完整测试增至 27 项且全部通过。
+- App Store Connect 英文版本页的描述、关键词、支持 URL、版权、审核联系人与审核备注已预填；等待用户提供审核联系电话后保存。

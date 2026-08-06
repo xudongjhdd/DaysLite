@@ -12,6 +12,8 @@ The PNG files under `development/` are simulator evidence, not final App Store a
 - Content: use realistic sample events; never include personal, account, payment, or private information.
 - Quantity: four screenshots per language. App Store Connect supports 1–10 screenshots per device size.
 
+Capture status: complete on 2026-08-06. The final `en-US/` and `zh-Hans/` files are 1320×2868 PNG screenshots from an iPhone 17 Pro Max simulator and were visually inspected at full size.
+
 Apple may change accepted devices and dimensions. Verify the current [official screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/) immediately before capture.
 
 ## Capture matrix

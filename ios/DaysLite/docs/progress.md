@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：自动化测试与模拟器验收
+- 当前阶段：App Store Connect App 记录与 Release Archive
 - 总体状态：进行中（本地功能与提交材料已就绪，会员已激活并进入签名阶段）
-- 当前阻塞：无；真机核心流程仍需用户实际操作验收
-- 下一步：在 iPhone 上验收新增、编辑、删除、语言切换和重启持久化
+- 当前阻塞：App Store Connect 中尚未创建 DaysLite App 记录
+- 下一步：创建显式 App ID 和 App Store Connect App 记录，然后生成 Release Archive 并上传 TestFlight
 
 ## 里程碑
 
@@ -27,8 +27,8 @@
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
 | 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
-| 自动化测试与模拟器验收 | 进行中 |  | Codex | 功能测试 26 项和多轮模拟器手工验收已通过 | 补齐最终回归与 Release 构建证据 |
-| 真机签名与测试 | 进行中 |  | 用户 / Codex | Team `XAQW5BWUB6` 自动签名构建成功；DaysLite 已安装并在 iPhone 15 Pro 启动运行 | 用户完成核心流程人工验收 |
+| 自动化测试与模拟器验收 | 已完成 | 2026-08-06 | Codex | 功能测试 26 项、Release 模拟器构建和多轮模拟器手工验收已通过 | 无 |
+| 真机签名与测试 | 已完成 | 2026-08-06 | 用户 / Codex | Team `XAQW5BWUB6` 自动签名；DaysLite 已在 iPhone 15 Pro 完成安装、启动和用户核心流程验收 | 无 |
 | Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
 | TestFlight | 未开始 |  | 用户 / Codex |  | 需要会员激活和 App Store Connect 记录 |
 | 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
@@ -101,3 +101,4 @@
 - 将 DaysLite Debug/Release 配置接入个人 Team 自动签名；自动登记 iPhone 并生成开发描述文件。
 - DaysLite 真机 Debug 构建签名成功并安装到 iPhone 15 Pro；安装后设备连接变为 unavailable，首次启动和人工验收待重新连接后继续。
 - iPhone 恢复连接后，DaysLite 通过 `devicectl` 启动成功，并确认应用进程正在真机运行；签名、设备注册、安装和首次启动链路已跑通。
+- 用户确认在 iPhone 15 Pro 上完成新增、编辑、删除、语言切换和重启持久化等核心流程验收，结果正常。

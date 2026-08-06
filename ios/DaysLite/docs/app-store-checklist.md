@@ -24,7 +24,7 @@
 - [x] 1024×1024、无 alpha 的 App 图标已生成。
 - [x] `PrivacyInfo.xcprivacy` 已声明 UserDefaults 必需原因 `CA92.1`。
 - [x] 已用个人 Team 完成自动签名和真机 Debug 构建。
-- [ ] 真机安装并完成核心流程验收。
+- [x] 真机安装并完成核心流程验收。
 
 ## C. App Store Connect 记录
 

@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：TestFlight 出口合规与内部测试
-- 总体状态：进行中（构建 1 已上传并完成 Apple 处理）
-- 当前阻塞：等待账号持有人确认出口合规答案；欧盟分发前仍需如实完成交易商状态申报
-- 下一步：确认“不属于上述任意一种算法”，使构建 1 可供内部 TestFlight 测试
+- 当前阶段：TestFlight 内部测试
+- 总体状态：进行中（构建 1 已上传、处理完成并通过出口合规）
+- 当前阻塞：无；欧盟分发前仍需由账号持有人如实完成交易商状态申报
+- 下一步：创建内部测试群组、加入账号持有人并在 TestFlight 安装验收
 
 ## 里程碑
 
@@ -31,7 +31,7 @@
 | 真机签名与测试 | 已完成 | 2026-08-06 | 用户 / Codex | Team `XAQW5BWUB6` 自动签名；DaysLite 已在 iPhone 15 Pro 完成安装、启动和用户核心流程验收 | 无 |
 | App ID 与 App Store Connect 记录 | 已完成 | 2026-08-06 | 用户 / Codex | 显式 Bundle ID `com.dayslite.countdown.ios`；商店名 `DaysLite: Simple Countdown`；Apple App ID `6798545461`；iOS 1.0 状态为“准备提交” | 无 |
 | Release Archive | 已完成 | 2026-08-06 | Codex | `xcodebuild archive` 成功；App Store Connect 本地导出成功；版本 1.0.0 (1)、arm64、Team `XAQW5BWUB6`、Cloud Managed Apple Distribution、`get-task-allow=false` | 上传前取得用户确认 |
-| TestFlight | 进行中 |  | 用户 / Codex | 构建 1 上传成功并完成 Apple 处理；TestFlight 已显示版本 1.0.0 (1) | 完成出口合规后开始内部测试 |
+| TestFlight | 进行中 |  | 用户 / Codex | 构建 1 上传成功、完成 Apple 处理和出口合规；状态“准备提交”，90 天后过期 | 创建内部测试群组并安装验收 |
 | 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
 | App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
@@ -113,3 +113,4 @@
 - 经用户确认，将版本 `1.0.0` 构建 `1` 上传 App Store Connect；Xcode 返回 `Upload succeeded`。
 - Apple 处理完成后，构建 1 已出现在 TestFlight，当前状态为“缺少出口合规证明”。
 - 对 Swift 源码和归档二进制进行加密能力核对：未发现 CryptoKit、CommonCrypto、SecKey、网络请求、WebView、自定义加密或第三方框架；建议在问卷中选择“不属于上述任意一种算法”。
+- 出口合规声明已生效；TestFlight 构建 1 状态变为“准备提交”，有效期 90 天，可进入内部测试配置。

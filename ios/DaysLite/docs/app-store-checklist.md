@@ -54,7 +54,7 @@
 - [x] Archive 的 Bundle ID、版本、构建号和 Team 正确。
 - [ ] Organizer Validate App 通过。
 - [x] 构建 1 已上传并完成 Apple 处理。
-- [ ] TestFlight 出口合规信息已完成。
+- [x] TestFlight 出口合规信息已完成；构建 1 状态为“准备提交”。
 - [ ] 内部 TestFlight 真机验收通过。
 - [ ] 如产生新构建，构建号已递增且商店选择的是最终构建。
 

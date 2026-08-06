@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：TestFlight 安装验收
-- 总体状态：进行中（内部测试群组、构建和账号持有人邀请均已配置）
-- 当前阻塞：等待用户在 iPhone TestFlight App 接受邀请并安装；欧盟分发前仍需如实完成交易商状态申报
-- 下一步：用户通过 TestFlight 安装构建 1并完成核心流程验收
+- 当前阶段：商店资料与隐私申报
+- 总体状态：进行中（内部 TestFlight 真机验收已完成）
+- 当前阻塞：正式提交前需完成商店截图、在线元数据及合规问卷；欧盟分发前仍需如实完成交易商状态申报
+- 下一步：填写 App Store 版本资料、隐私与年龄分级，并上传最终商店截图
 
 ## 里程碑
 
@@ -31,7 +31,7 @@
 | 真机签名与测试 | 已完成 | 2026-08-06 | 用户 / Codex | Team `XAQW5BWUB6` 自动签名；DaysLite 已在 iPhone 15 Pro 完成安装、启动和用户核心流程验收 | 无 |
 | App ID 与 App Store Connect 记录 | 已完成 | 2026-08-06 | 用户 / Codex | 显式 Bundle ID `com.dayslite.countdown.ios`；商店名 `DaysLite: Simple Countdown`；Apple App ID `6798545461`；iOS 1.0 状态为“准备提交” | 无 |
 | Release Archive | 已完成 | 2026-08-06 | Codex | `xcodebuild archive` 成功；App Store Connect 本地导出成功；版本 1.0.0 (1)、arm64、Team `XAQW5BWUB6`、Cloud Managed Apple Distribution、`get-task-allow=false` | 上传前取得用户确认 |
-| TestFlight | 进行中 |  | 用户 / Codex | 创建 `DaysLite Internal` 内部群组；构建 1 状态“准备测试”；账号持有人 `xudongboy@gmail.com` 已邀请 | 用户在 TestFlight 接受、安装并验收 |
+| TestFlight | 已完成 | 2026-08-06 | 用户 / Codex | `DaysLite Internal` 群组包含构建 1；用户确认已通过 iPhone TestFlight 成功安装并完成真机验收 | 无 |
 | 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
 | App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
@@ -116,3 +116,4 @@
 - 出口合规声明已生效；TestFlight 构建 1 状态变为“准备提交”，有效期 90 天，可进入内部测试配置。
 - 创建内部测试群组 `DaysLite Internal`，关闭不可修改的自动分发选项，以保留后续构建的手动控制。
 - 将版本 `1.0.0` 构建 `1` 加入群组，状态为“准备测试”，并邀请账号持有人 `xudongboy@gmail.com`；App Store Connect 显示 1 个测试员、1 个构建版本、状态“已邀请”。
+- 用户确认已通过 iPhone TestFlight 成功安装 DaysLite，并要求将“内部 TestFlight 真机验收”标记完成；TestFlight 分发与验收里程碑完成。

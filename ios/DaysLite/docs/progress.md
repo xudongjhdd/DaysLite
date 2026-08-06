@@ -12,9 +12,9 @@
 ## 当前摘要
 
 - 当前阶段：自动化测试与模拟器验收
-- 总体状态：进行中（本地功能与提交材料已就绪，账号侧步骤阻塞）
-- 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：完成最终自动化/模拟器验收；会员激活后配置个人 Team、真机签名并创建 App Store Connect 记录
+- 总体状态：进行中（本地功能与提交材料已就绪，会员已激活并进入签名阶段）
+- 当前阻塞：尚未在 Xcode 核对个人 Team、Team ID 和真机签名状态
+- 下一步：在 Xcode 配置已激活的个人 Team，记录 Team ID，连接真机验收并创建 App Store Connect 记录
 
 ## 里程碑
 
@@ -23,7 +23,7 @@
 | 产品目标与范围确认 | 已完成 | 2026-08-06 | 用户 / Codex | 对话中确认 SwiftUI、iOS 17、本地存储、个人发布和学习目标 | 无 |
 | 技术路线确认 | 已完成 | 2026-08-06 | 用户 / Codex | 选择独立原生 SwiftUI 工程 | 无 |
 | 设计规格 | 已完成 | 2026-08-06 | 用户 / Codex | `docs/superpowers/specs/2026-08-06-dayslite-ios-design.md`；用户回复“规格通过” | 无 |
-| Apple Developer Program 激活 | 阻塞 |  | 用户 / Apple | 已支付 99 美元；账户显示“待处理” | 等待最长 48 小时后检查 Active、Team ID 和确认邮件 |
+| Apple Developer Program 激活 | 已完成 | 2026-08-06 | 用户 / Apple | 用户确认会员已激活 | 核对个人 Team、Team ID、角色和续费日期 |
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
 | 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
@@ -52,9 +52,8 @@
 ### Apple Developer Program
 
 - 已完成个人会员 99 美元付款。
-- Apple Developer 账户当前显示 `Snow xu（待处理）`。
-- Apple 页面提示购买处理最多可能需要 48 小时。
-- 激活后需要记录会员状态、角色、续费日期和 Team ID 是否可见；不要在本文件记录账号密码、付款信息或证件号码。
+- 用户于 2026-08-06 确认 Apple Developer Program 会员已经激活。
+- 下一步需要在 Developer 账户和 Xcode 中核对个人 Team、Team ID、Account Holder 角色和续费日期；不要在本文件记录账号密码、付款信息或证件号码。
 
 ## 工作记录
 
@@ -97,3 +96,4 @@
 - 完整 iOS 单元测试再次运行：26 项全部通过，0 失败。
 - Release 模拟器构建成功，并核对产物包含 App 图标、双语隐私政策与隐私清单。
 - 当前执行环境访问 GitHub 时出现 SSL 网络错误，因此 Support URL 与公开 Privacy Policy URL 仍保留在提交前人工在线核对清单中。
+- 用户确认 Apple Developer Program 已激活，账号阶段从等待处理转入个人 Team、签名和 App Store Connect 配置阶段。

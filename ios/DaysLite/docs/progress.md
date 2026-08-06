@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：实施计划完成，等待执行方式确认
+- 当前阶段：iOS 工程与核心模型实现
 - 总体状态：进行中
 - 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：选择本任务内执行或分批执行；随后创建并验证 iOS 工程
+- 下一步：以 TDD 实现本地日期、事件与倒计时计算
 
 ## 里程碑
 
@@ -25,7 +25,7 @@
 | 设计规格 | 已完成 | 2026-08-06 | 用户 / Codex | `docs/superpowers/specs/2026-08-06-dayslite-ios-design.md`；用户回复“规格通过” | 无 |
 | Apple Developer Program 激活 | 阻塞 |  | 用户 / Apple | 已支付 99 美元；账户显示“待处理” | 等待最长 48 小时后检查 Active、Team ID 和确认邮件 |
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 等待执行方式确认 |
-| iOS 工程创建 | 未开始 |  | Codex |  | 等待实施计划 |
+| iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
 | 核心功能实现 | 未开始 |  | Codex |  | 等待工程创建 |
 | 自动化测试与模拟器验收 | 未开始 |  | Codex |  | 等待功能实现 |
 | 真机签名与测试 | 未开始 |  | 用户 / Codex |  | 需要会员激活及真机连接 |
@@ -74,3 +74,6 @@
 - 写入完整设计规格和初始进度记录。
 - 用户通过书面设计规格，并确认 iOS 代码继续放在当前 GitHub 仓库的 `ios/` 目录。
 - 编写测试驱动的详细实施与上架计划。
+- 用户选择在当前任务中执行实施计划。
+- Android 基线 `./gradlew test` 通过。
+- 创建原生 SwiftUI Xcode 工程；在 iPhone 17 Pro / iOS 26.5 模拟器完成 RED/GREEN 冒烟测试。

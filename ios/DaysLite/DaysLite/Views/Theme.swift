@@ -24,7 +24,7 @@ enum Theme {
     static let card = Color.white
     static let border = Color.black.opacity(0.06)
     static let shadow = Color.black.opacity(0.06)
-    static let eventColors = ["#2563EB", "#10B981", "#F59E0B", "#EC4899", "#8B5CF6", "#64748B"]
+    static let eventColors = CountdownDraft.approvedColors
 }
 
 extension Color {

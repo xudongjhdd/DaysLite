@@ -30,10 +30,7 @@ struct RootView: View {
             onSettings: { showsSettings = true }
         )
         .sheet(item: $editorSelection) { selection in
-            NavigationStack {
-                Text(editorTitle(for: selection))
-                    .navigationTitle(editorTitle(for: selection))
-            }
+            CountdownEditorView(event: event(for: selection))
         }
         .sheet(isPresented: $showsSettings) {
             NavigationStack {
@@ -59,12 +56,12 @@ struct RootView: View {
         )
     }
 
-    private func editorTitle(for selection: EditorSelection) -> String {
+    private func event(for selection: EditorSelection) -> CountdownEvent? {
         switch selection {
         case .new:
-            return text.addCountdownTitle
-        case .existing:
-            return text.editCountdownTitle
+            return nil
+        case .existing(let id):
+            return model.events.first { $0.id == id }
         }
     }
 }

@@ -55,6 +55,7 @@
 - [ ] Organizer Validate App 通过。
 - [x] 构建 1 已上传并完成 Apple 处理。
 - [x] TestFlight 出口合规信息已完成；构建 1 状态为“准备提交”。
+- [x] 已创建 `DaysLite Internal` 内部群组、添加构建 1并邀请账号持有人。
 - [ ] 内部 TestFlight 真机验收通过。
 - [ ] 如产生新构建，构建号已递增且商店选择的是最终构建。
 

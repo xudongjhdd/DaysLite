@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：iOS 工程与核心模型实现
+- 当前阶段：双语文案与 SwiftUI 界面实现
 - 总体状态：进行中
 - 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：以 TDD 实现本地日期、事件与倒计时计算
+- 下一步：以 TDD 建立中英文文案目录，再实现首页倒计时卡片
 
 ## 里程碑
 
@@ -24,9 +24,9 @@
 | 技术路线确认 | 已完成 | 2026-08-06 | 用户 / Codex | 选择独立原生 SwiftUI 工程 | 无 |
 | 设计规格 | 已完成 | 2026-08-06 | 用户 / Codex | `docs/superpowers/specs/2026-08-06-dayslite-ios-design.md`；用户回复“规格通过” | 无 |
 | Apple Developer Program 激活 | 阻塞 |  | 用户 / Apple | 已支付 99 美元；账户显示“待处理” | 等待最长 48 小时后检查 Active、Team ID 和确认邮件 |
-| 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 等待执行方式确认 |
+| 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
-| 核心功能实现 | 未开始 |  | Codex |  | 等待工程创建 |
+| 核心功能实现 | 进行中 |  | Codex | 日期与倒计时 8 项测试通过；存储与应用状态 7 项测试通过 | 下一步：双语文案、首页、编辑页和设置页 |
 | 自动化测试与模拟器验收 | 未开始 |  | Codex |  | 等待功能实现 |
 | 真机签名与测试 | 未开始 |  | 用户 / Codex |  | 需要会员激活及真机连接 |
 | Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
@@ -78,3 +78,4 @@
 - Android 基线 `./gradlew test` 通过。
 - 创建原生 SwiftUI Xcode 工程；在 iPhone 17 Pro / iOS 26.5 模拟器完成 RED/GREEN 冒烟测试。
 - 以 TDD 实现 `LocalDate`、`CountdownEvent` 和 `CountdownCalculator`；8 项日期与年度重复测试通过。
+- 以 TDD 实现本地 JSON 存储、逐条坏数据恢复、旧字段兼容、语言保存和 `AppModel` 即时持久化；7 项针对性测试通过。

@@ -12,6 +12,7 @@ final class AppModel {
     private(set) var storeError: StoreError?
 
     init(
+        
         store: CountdownStore = CountdownStore(),
         now: @escaping () -> Date = Date.init
     ) {

@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：App 图标、隐私清单与商店材料
-- 总体状态：进行中
+- 当前阶段：自动化测试与模拟器验收
+- 总体状态：进行中（本地功能与提交材料已就绪，账号侧步骤阻塞）
 - 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：生成正式 App 图标、隐私清单和 App Store 上架文档
+- 下一步：完成最终自动化/模拟器验收；会员激活后配置个人 Team、真机签名并创建 App Store Connect 记录
 
 ## 里程碑
 
@@ -27,11 +27,11 @@
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
 | 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
-| 自动化测试与模拟器验收 | 未开始 |  | Codex |  | 等待功能实现 |
+| 自动化测试与模拟器验收 | 进行中 |  | Codex | 功能测试 26 项和多轮模拟器手工验收已通过 | 补齐最终回归与 Release 构建证据 |
 | 真机签名与测试 | 未开始 |  | 用户 / Codex |  | 需要会员激活及真机连接 |
 | Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
 | TestFlight | 未开始 |  | 用户 / Codex |  | 需要会员激活和 App Store Connect 记录 |
-| 商店资料与隐私申报 | 未开始 |  | 用户 / Codex |  | 等待构建和截图 |
+| 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
 | App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
 | 发布流程复盘 | 未开始 |  | 用户 / Codex |  | 发布后更新手册 |
@@ -89,3 +89,11 @@
 - 设置与隐私视觉证据：`StoreAssets/screenshots/development/settings-en.png`、`privacy-en.png`、`settings-zh-Hans.png`、`privacy-zh-Hans.png`。
 - 完成 VoiceOver 语义树检查、Extra Extra Large、Accessibility XXXL 和深色模式验收；发现并修复固定浅色隐私页在深色模式下的白字问题。
 - 完整 iOS 测试 26 项通过。
+- 生成确定性的 1024×1024 无透明通道 App 图标，并将生成脚本纳入版本管理。
+- 添加 Apple 隐私清单：不跟踪、不收集数据，仅以 `CA92.1` 说明 App 自身使用 UserDefaults。
+- 完成英文/简体中文 App Store 文案、审核备注和最终截图采集矩阵；开发截图明确不作为最终商店图使用。
+- 完成可复用的 App Store 发布操作手册和逐项检查清单，区分用户本人操作、技术操作和当前会员激活阻塞。
+- 校验 App 图标为 1024×1024 且无 alpha；`PrivacyInfo.xcprivacy` 通过 `plutil` 语法检查。
+- 完整 iOS 单元测试再次运行：26 项全部通过，0 失败。
+- Release 模拟器构建成功，并核对产物包含 App 图标、双语隐私政策与隐私清单。
+- 当前执行环境访问 GitHub 时出现 SSL 网络错误，因此 Support URL 与公开 Privacy Policy URL 仍保留在提交前人工在线核对清单中。

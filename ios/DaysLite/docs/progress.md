@@ -77,3 +77,4 @@
 - 用户选择在当前任务中执行实施计划。
 - Android 基线 `./gradlew test` 通过。
 - 创建原生 SwiftUI Xcode 工程；在 iPhone 17 Pro / iOS 26.5 模拟器完成 RED/GREEN 冒烟测试。
+- 以 TDD 实现 `LocalDate`、`CountdownEvent` 和 `CountdownCalculator`；8 项日期与年度重复测试通过。

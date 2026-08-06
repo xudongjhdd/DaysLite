@@ -53,7 +53,7 @@
 - [x] Release 配置在通用 iOS 设备目标构建成功。
 - [x] Archive 的 Bundle ID、版本、构建号和 Team 正确。
 - [ ] Organizer Validate App 通过。
-- [ ] 构建已上传并完成 Apple 处理。
+- [x] 构建 1 已上传并完成 Apple 处理。
 - [ ] TestFlight 出口合规信息已完成。
 - [ ] 内部 TestFlight 真机验收通过。
 - [ ] 如产生新构建，构建号已递增且商店选择的是最终构建。

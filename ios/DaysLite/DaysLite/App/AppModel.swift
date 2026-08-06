@@ -76,6 +76,11 @@ final class AppModel {
         store.saveLanguage(language)
     }
 
+    func setLanguage(_ language: AppLanguage) {
+        self.language = language
+        store.saveLanguage(language)
+    }
+
     func sortedEvents(today: LocalDate) -> [CountdownEvent] {
         let calculator = CountdownCalculator(calendar: .autoupdatingCurrent)
         return events.sorted { lhs, rhs in

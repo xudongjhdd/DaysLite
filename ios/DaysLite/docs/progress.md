@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：设置、隐私与辅助功能
+- 当前阶段：App 图标、隐私清单与商店材料
 - 总体状态：进行中
 - 当前阻塞：Apple Developer Program 付款正在处理，Apple 页面提示最长可能需要 48 小时
-- 下一步：实现设置、语言选择、本地隐私政策和辅助功能验收
+- 下一步：生成正式 App 图标、隐私清单和 App Store 上架文档
 
 ## 里程碑
 
@@ -26,7 +26,7 @@
 | Apple Developer Program 激活 | 阻塞 |  | 用户 / Apple | 已支付 99 美元；账户显示“待处理” | 等待最长 48 小时后检查 Active、Team ID 和确认邮件 |
 | 实施计划 | 已完成 | 2026-08-06 | Codex | `docs/superpowers/plans/2026-08-06-dayslite-ios.md`；已完成规格覆盖、占位符和类型一致性自审 | 当前任务内按计划执行 |
 | iOS 工程创建 | 已完成 | 2026-08-06 | Codex | Xcode 26.5 可列出 `DaysLite` scheme；iPhone 17 Pro / iOS 26.5 冒烟测试 1 项通过 | 无 |
-| 核心功能实现 | 进行中 |  | Codex | 完整测试 25 项通过；编辑器新增/取消/删除/重启持久化均经模拟器交互核对 | 下一步：设置和隐私页 |
+| 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
 | 自动化测试与模拟器验收 | 未开始 |  | Codex |  | 等待功能实现 |
 | 真机签名与测试 | 未开始 |  | 用户 / Codex |  | 需要会员激活及真机连接 |
 | Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
@@ -84,3 +84,8 @@
 - 模拟器视觉证据：`StoreAssets/screenshots/development/home-empty.png`、`StoreAssets/screenshots/development/home-populated.png`（均为 1206×2622）。
 - 完成新增/编辑表单、日期选择、六种事件颜色、备注、年度重复、空标题校验和删除确认；完整测试 25 项通过。
 - 模拟器手工验收新增保存、修改后取消、删除取消、删除确认、键盘收起和重启持久化，结果符合预期。
+- 完成设置页、English/简体中文 Picker、版本信息和随 App 打包的双语 Markdown 隐私政策；语言切换立即生效并跨重启保存。
+- 更新公开隐私政策，分别准确说明 iOS 卸载删除数据和 Android 清除应用存储，不再把 Android 操作描述为 iOS 能力。
+- 设置与隐私视觉证据：`StoreAssets/screenshots/development/settings-en.png`、`privacy-en.png`、`settings-zh-Hans.png`、`privacy-zh-Hans.png`。
+- 完成 VoiceOver 语义树检查、Extra Extra Large、Accessibility XXXL 和深色模式验收；发现并修复固定浅色隐私页在深色模式下的白字问题。
+- 完整 iOS 测试 26 项通过。

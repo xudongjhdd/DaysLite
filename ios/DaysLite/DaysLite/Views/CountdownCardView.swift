@@ -71,6 +71,8 @@ struct CountdownCardView: View {
             .opacity(isPast ? 0.68 : 1)
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityHint(text.language == .chinese ? "双击编辑倒计时" : "Double-tap to edit countdown")
         .accessibilityIdentifier("event.\(event.id.uuidString.uppercased())")
     }
 }

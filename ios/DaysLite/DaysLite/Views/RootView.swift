@@ -34,8 +34,7 @@ struct RootView: View {
         }
         .sheet(isPresented: $showsSettings) {
             NavigationStack {
-                Text(text.settings)
-                    .navigationTitle(text.settingsTitle)
+                SettingsView()
             }
         }
         .alert(text.saveFailure, isPresented: storeErrorBinding) {

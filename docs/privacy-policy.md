@@ -20,7 +20,7 @@ The current version of DaysLite does not request notification permission. If a f
 
 All countdown data is stored locally on the user's device.
 
-Users can delete individual countdown events inside the app. Users can also delete all app data by uninstalling DaysLite or clearing the app's storage from Android system settings.
+Users can delete individual countdown events inside the app. Users can delete all locally stored DaysLite data by uninstalling the app. Android users may also clear the app's storage in Android system settings.
 
 ## Data Sharing
 

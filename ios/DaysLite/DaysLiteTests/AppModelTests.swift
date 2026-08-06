@@ -44,6 +44,19 @@ final class AppModelTests: XCTestCase {
 
         XCTAssertEqual(model.language, .chinese)
         XCTAssertEqual(store.loadLanguage(), .chinese)
+
+        let reloaded = AppModel(store: CountdownStore(defaults: defaults))
+        XCTAssertEqual(reloaded.language, .chinese)
+    }
+
+    func testSetLanguagePersistsPickerSelection() throws {
+        let defaults = try makeDefaults()
+        let model = AppModel(store: CountdownStore(defaults: defaults))
+
+        model.setLanguage(.chinese)
+
+        let reloaded = AppModel(store: CountdownStore(defaults: defaults))
+        XCTAssertEqual(reloaded.language, .chinese)
     }
 
     func testSortedEventsUsesNextOccurrenceForYearlyEvents() throws {

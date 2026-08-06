@@ -11,10 +11,10 @@
 
 ## 当前摘要
 
-- 当前阶段：App Store Connect App 记录与 Release Archive
-- 总体状态：进行中（本地功能与提交材料已就绪，会员已激活并进入签名阶段）
-- 当前阻塞：App Store Connect 中尚未创建 DaysLite App 记录
-- 下一步：创建显式 App ID 和 App Store Connect App 记录，然后生成 Release Archive 并上传 TestFlight
+- 当前阶段：TestFlight 上传
+- 总体状态：进行中（App Store Connect 记录、Release Archive 和 App Store 分发 IPA 均已验证）
+- 当前阻塞：等待用户确认将构建 1 上传至 Apple；欧盟分发前仍需由账号持有人如实完成交易商状态申报
+- 下一步：上传构建 1，等待 Apple 处理后完成 TestFlight 内部测试
 
 ## 里程碑
 
@@ -29,8 +29,9 @@
 | 核心功能实现 | 已完成 | 2026-08-06 | Codex | 完整测试 26 项通过；首页、编辑、设置、双语隐私和辅助功能均经模拟器核对 | 进入商店资源和发布验证 |
 | 自动化测试与模拟器验收 | 已完成 | 2026-08-06 | Codex | 功能测试 26 项、Release 模拟器构建和多轮模拟器手工验收已通过 | 无 |
 | 真机签名与测试 | 已完成 | 2026-08-06 | 用户 / Codex | Team `XAQW5BWUB6` 自动签名；DaysLite 已在 iPhone 15 Pro 完成安装、启动和用户核心流程验收 | 无 |
-| Release Archive | 未开始 |  | Codex |  | 需要签名配置 |
-| TestFlight | 未开始 |  | 用户 / Codex |  | 需要会员激活和 App Store Connect 记录 |
+| App ID 与 App Store Connect 记录 | 已完成 | 2026-08-06 | 用户 / Codex | 显式 Bundle ID `com.dayslite.countdown.ios`；商店名 `DaysLite: Simple Countdown`；Apple App ID `6798545461`；iOS 1.0 状态为“准备提交” | 无 |
+| Release Archive | 已完成 | 2026-08-06 | Codex | `xcodebuild archive` 成功；App Store Connect 本地导出成功；版本 1.0.0 (1)、arm64、Team `XAQW5BWUB6`、Cloud Managed Apple Distribution、`get-task-allow=false` | 上传前取得用户确认 |
+| TestFlight | 进行中 |  | 用户 / Codex | App Store 分发 IPA 已生成并包含符号、隐私清单和双语隐私政策 | 上传构建 1并等待 Apple 处理 |
 | 商店资料与隐私申报 | 进行中 |  | 用户 / Codex | App 图标、隐私清单、双语文案、审核备注、发布手册和检查清单已完成 | 最终商店截图及 App Store Connect 在线申报需会员激活 |
 | App Review | 未开始 |  | 用户 / Apple |  | 等待提交材料完整 |
 | App Store 发布 | 未开始 |  | 用户 / Apple |  | 等待审核通过 |
@@ -102,3 +103,10 @@
 - DaysLite 真机 Debug 构建签名成功并安装到 iPhone 15 Pro；安装后设备连接变为 unavailable，首次启动和人工验收待重新连接后继续。
 - iPhone 恢复连接后，DaysLite 通过 `devicectl` 启动成功，并确认应用进程正在真机运行；签名、设备注册、安装和首次启动链路已跑通。
 - 用户确认在 iPhone 15 Pro 上完成新增、编辑、删除、语言切换和重启持久化等核心流程验收，结果正常。
+- 在 Apple Developer 注册显式 App ID `com.dayslite.countdown.ios`。
+- App Store Connect 中原名称 `DaysLite` 已被占用；经用户确认采用商店名 `DaysLite: Simple Countdown`，代码和设备桌面显示名保持 `DaysLite`。
+- 创建 App Store Connect iOS App 记录成功：SKU `DAYSLITE-IOS-001`，Apple App ID `6798545461`，版本 1.0 状态为“准备提交”。
+- App Store Connect 提示欧盟分发前必须提供交易商状态；该法律身份申报保留给账号持有人如实完成。
+- 生成 Release Archive 成功：Bundle ID `com.dayslite.countdown.ios`、版本 `1.0.0`、构建号 `1`、Team `XAQW5BWUB6`、arm64、最低 iOS 17。
+- 本地 App Store Connect 导出成功；Apple 自动使用 Cloud Managed Apple Distribution 证书与 Store Provisioning Profile 重新签名，导出包 `get-task-allow=false`、`beta-reports-active=true`。
+- 导出的 IPA 包含 App 图标、`PrivacyInfo.xcprivacy`、英文/简体中文隐私政策和符号文件，已具备上传 TestFlight 条件。

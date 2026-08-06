@@ -28,9 +28,9 @@
 
 ## C. App Store Connect 记录
 
-- [ ] 显式 App ID / Bundle ID 可用并已注册。
-- [ ] 已创建 DaysLite App 记录，平台为 iOS。
-- [ ] SKU 已设为唯一内部值（建议 `DAYSLITE-IOS-001`）。
+- [x] 显式 App ID / Bundle ID `com.dayslite.countdown.ios` 已注册。
+- [x] 已创建 `DaysLite: Simple Countdown` App 记录，平台为 iOS，Apple App ID 为 `6798545461`。
+- [x] SKU 已设为唯一内部值 `DAYSLITE-IOS-001`。
 - [ ] Primary Language、分类和版本信息已填写。
 - [ ] Support URL 可匿名访问。
 - [ ] Privacy Policy URL 可匿名访问。
@@ -50,8 +50,8 @@
 
 ## E. 构建与 TestFlight
 
-- [ ] Release 配置在通用 iOS 设备目标构建成功。
-- [ ] Archive 的 Bundle ID、版本、构建号和 Team 正确。
+- [x] Release 配置在通用 iOS 设备目标构建成功。
+- [x] Archive 的 Bundle ID、版本、构建号和 Team 正确。
 - [ ] Organizer Validate App 通过。
 - [ ] 构建已上传并完成 Apple 处理。
 - [ ] TestFlight 出口合规信息已完成。
